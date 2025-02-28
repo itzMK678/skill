@@ -21,7 +21,7 @@ const Navbar = () => {
                 { name: 'SEO', link: '#' },
                 { name: 'Content Marketing', link: '#' },
                 { name: 'Social Media Management', link: '#' },
-                { name: 'PPC Advertising', link: '#' }
+                { name: 'Web Development', link: '#' }
             ]
         },
         { name: 'Contact', link: '#' }
