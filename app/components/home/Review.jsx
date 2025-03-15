@@ -31,7 +31,7 @@ const reviews = [
 
 const Review = () => {
   return (
-    <div className="bg-gradient-to-br from-black via-purple-800 to-black py-24">
+    <div className="bg-black py-24">
       <div className="container px-6 mx-auto text-center">
         <h2 className="text-5xl font-extrabold text-white mb-12">
           What Our Clients Say
