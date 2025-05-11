@@ -6,22 +6,25 @@ import About from './components/home/About';
 import Service from './components/home/Service';
 import Review from './components/home/Review';
 import Contact from './components/home/Contact';
-import { NoiseDemo } from './components/spash-container';
+
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+ 
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    
+   
   }, []);
 
   return (
     <div className="bg-black text-white">
       {loading ? <Loading /> : null}
       <div>
-      <NoiseDemo/>
+      {/* <NoiseDemo/> */}
       <HeroSection/>
       <About/>
       <Service/>

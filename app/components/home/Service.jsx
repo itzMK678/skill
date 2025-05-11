@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaSearch, FaBullhorn, FaShareAlt, FaChartLine } from 'react-icons/fa';
+import { FaSearch, FaBullhorn, FaShareAlt, FaChartLine, FaLaptopCode, FaShopify, FaPenAlt } from 'react-icons/fa'; // 🆕 Added FaPenAlt for content writing
 
 const services = [
   {
@@ -38,6 +38,33 @@ const services = [
     description:
       'Optimize your website to increase the number of visitors who take your desired actions—turning leads into customers.',
   },
+  {
+    id: 5,
+    icon: FaLaptopCode, 
+    gradientFrom: 'from-blue-500',
+    gradientTo: 'to-blue-700',
+    title: 'Web Development',
+    description:
+      'Create stunning, responsive websites that deliver exceptional user experiences and drive business growth.',
+  },
+  {
+    id: 6,
+    icon: FaShopify, // 🆕
+    gradientFrom: 'from-green-400',
+    gradientTo: 'to-green-600',
+    title: 'Shopify Development',
+    description:
+      'Launch and scale your eCommerce business with beautiful, high-performing Shopify stores tailored to your brand.',
+  },
+  {
+    id: 7,
+    icon: FaPenAlt, // 🆕 Added FaPenAlt for blogging and content writing
+    gradientFrom: 'from-orange-400',
+    gradientTo: 'to-yellow-500',
+    title: 'Blogging & Content Writing',
+    description:
+      'Engage your audience with high-quality, SEO-friendly blog posts and compelling content that resonates with your brand voice.',
+  },
 ];
 
 const Service = () => {
@@ -47,7 +74,11 @@ const Service = () => {
         <h2 className="text-5xl font-extrabold text-white mb-12">
           Our Services
         </h2>
-
+        <div className="my-10 text-center">
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Whether you're looking to increase your organic reach, drive paid traffic, or convert visitors into leads, we have a tailored solution for you. Let’s take your business to the next level!
+          </p>
+        </div>
         <div className="flex flex-wrap justify-center gap-8">
           {services.map((service) => (
             <div
@@ -67,12 +98,6 @@ const Service = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Whether you're looking to increase your organic reach, drive paid traffic, or convert visitors into leads, we have a tailored solution for you. Let’s take your business to the next level!
-          </p>
         </div>
       </div>
     </div>

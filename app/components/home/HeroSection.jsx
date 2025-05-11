@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroSection = () => {
   return (
-    <div className="relative h-screen flex items-center justify-center bg-black overflow-hidden">
+    <div className="relative h-fit md:h-[600px] flex items-center justify-center bg-black overflow-hidden">
      
       <div className="relative z-10 text-center max-w-4xl px-6 md:px-12">
         <p className="uppercase tracking-widest text-gray-300 text-lg font-semibold mb-4 animate-fade-in">

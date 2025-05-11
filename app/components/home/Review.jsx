@@ -1,7 +1,10 @@
-import React from 'react';
-import { FaStar } from 'react-icons/fa';
+import React from "react";
+import Slider from "react-slick";
+import { FaStar, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-// Testimonial data in an object array
+// Testimonial data
 const reviews = [
   {
     id: 1,
@@ -29,47 +32,64 @@ const reviews = [
   }
 ];
 
+const CustomPrevArrow = ({ onClick }) => (
+  <button className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 text-white text-3xl p-2 bg-gray-800 rounded-full shadow-lg" onClick={onClick}>
+    <FaChevronLeft />
+  </button>
+);
+
+const CustomNextArrow = ({ onClick }) => (
+  <button className="absolute right-0 top-1/2 transform -translate-y-1/2 text-white text-3xl p-2 bg-gray-800 rounded-full shadow-lg" onClick={onClick}>
+    <FaChevronRight />
+  </button>
+);
+
 const Review = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    arrows: true,
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />
+  };
+
   return (
-    <div className="bg-black py-24">
+    <div className="bg-black py-24 relative">
       <div className="container px-6 mx-auto text-center">
         <h2 className="text-5xl font-extrabold text-white mb-12">
           What Our Clients Say
         </h2>
-
-        <div className="flex flex-wrap justify-center gap-8">
-          {reviews.map((review) => (
-            <div
-              key={review.id}
-              className="w-full sm:w-1/2 lg:w-1/3 transform transition-transform duration-300 hover:scale-105"
-            >
-              <div className="bg-gradient-to-br from-purple-600 to-purple-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-700">
-                <div className="mb-6">
-                  <div className="flex justify-center">
+        <div className="max-w-2xl mx-auto relative">
+          <Slider {...settings}>
+            {reviews.map((review) => (
+              <div key={review.id} className="p-6">
+                <div className="bg-gradient-to-br from-purple-600 to-purple-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                  <div className="mb-6">
                     <img
-                      className="w-16 h-16 rounded-full object-cover border-4 border-white shadow-md"
+                      className="w-16 h-16 mx-auto rounded-full border-4 border-white shadow-md"
                       src={review.image}
                       alt={review.name}
                     />
+                    <p className="text-2xl font-bold text-white mt-4">{review.name}</p>
+                    <p className="text-gray-300 text-sm">{review.position}</p>
                   </div>
-                  <p className="text-2xl font-bold text-white mt-4">
-                    {review.name}
-                  </p>
-                  <p className="text-gray-300 text-sm">{review.position}</p>
+                  <div className="mb-6 flex justify-center">
+                    <span className="text-yellow-500 flex gap-1">
+                      {[...Array(review.rating)].map((_, index) => (
+                        <FaStar key={index} className="w-5 h-5" />
+                      ))}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-200 leading-relaxed">{review.text}</p>
                 </div>
-                <div className="mb-6 flex justify-center">
-                  <span className="text-yellow-500 flex gap-1">
-                    {[...Array(review.rating)].map((_, index) => (
-                      <FaStar key={index} className="w-5 h-5" />
-                    ))}
-                  </span>
-                </div>
-                <p className="text-sm text-gray-200 leading-relaxed">
-                  {review.text}
-                </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </Slider>
         </div>
       </div>
     </div>
