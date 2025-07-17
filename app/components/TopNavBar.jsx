@@ -21,7 +21,7 @@ const TopNavBar = () => {
     }, []);
 return (
     <div className='bg-gradient-to-r from-first py-4 flex justify-center items-center via-second to-third'>
-        <h3  id='h3text' className=''>🚀 Best Digital Marketing Agency in Pakistan | SEO, Web & Shopify Experts!</h3>
+        <h2  id='h3text' className=''>🚀 Best Digital Marketing Agency in Pakistan | SEO, Web & Shopify Experts!</h2>
     </div>
 )
 }

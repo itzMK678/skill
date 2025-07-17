@@ -1,70 +1,61 @@
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
-import logo from '../public/logo.png'
-const Footer = () => {
+import logo from '../public/logo.png'; // Adjust path if needed
+
+const App = () => {
   return (
-    <footer className="bg-black text-gray-300 pt-14 pb-8 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-gray-700 pb-10">
-          
-          
-          <div className="flex flex-col items-center md:items-start">
-           <Image src={logo} width={100} height={100}/>
-            <p className="text-gray-400 text-center md:text-left leading-relaxed">
+    <>
+    <footer className="bg-black text-gray-300 ">
+      <div className="bg-black pb-30 pt-20 ">
+        <div className="group relative flex flex-col items-center justify-center text-center">
+          {/* Main Logo + Text */}
+          <div className="bg-black text-white  rounded-lg w-full md:w-[500px]">
+            <Image src={logo} alt="Logo" width={80} height={80} className="mx-auto mb-4" />
+            <p className="text-sm w-auto md:text-base">
               We provide innovative digital solutions to help your business grow and succeed in the online world.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-xl font-semibold text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {['Home', 'About Us', 'Services', 'Contact'].map((item, idx) => (
-                <li key={idx}>
-                  <a 
-                    href={`#${item.toLowerCase().replace(/\s+/g, '')}`} 
-                    className="hover:text-purple-400 transition-colors duration-300"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Hover Section - Social Media */}
+          <div className="absolute top-full  w-0 group-hover:w-full max-w-[500px] overflow-hidden transition-all duration-1400 ease-in-out00 flex justify-center">
+            <div className="bg-black rounded-lg px-6 py-4 flex flex-col items-center  w-fit">
+              <p className="text-white text-sm m-t">Connect with us on Social Media</p>
+              <div className="rounded-[22px] px-3 flex gap-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
 
-          {/* Social Media Links */}
-          <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-xl font-semibold text-white mb-4">Follow Us</h3>
-            <div className="flex space-x-6">
-              {[
-                { icon: <FaFacebookF size={22} />, link: 'https://www.facebook.com' },
-                { icon: <FaTwitter size={22} />, link: 'https://www.twitter.com' },
-                { icon: <FaLinkedinIn size={22} />, link: 'https://www.linkedin.com' },
-                { icon: <FaInstagram size={22} />, link: 'https://www.instagram.com' },
-              ].map((social, idx) => (
-                <a 
-                  key={idx}
-                  href={social.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
-                >
-                  {social.icon}
-                </a>
-              ))}
+                {[
+                  { icon: <FaFacebookF />, label: "Facebook", link: "https://facebook.com" },
+                  { icon: <FaTwitter />, label: "Twitter", link: "https://twitter.com" },
+                  { icon: <FaLinkedinIn />, label: "LinkedIn", link: "https://linkedin.com" },
+                  { icon: <FaInstagram />, label: "Instagram", link: "https://instagram.com" },
+                ].map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                 className="my-1 flex flex-col items-center text-white bg-transparent rounded-md border border-transparent transition-all duration-300 hover:bg-white hover:text-gradient-to-r from-blue-500 via-purple-500 to-pink-500 ">
+ 
+ 
+                    <div className="text-2xl">{social.icon}</div>
+                    <span className="text-xs mt-1">{social.label}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-
-        </div>
-
-        {/* Footer Bottom */}
-        <div className="pt-6 text-center text-sm text-gray-500">
-          <p>&copy; 2025 Skill Creatives. All rights reserved.</p>
         </div>
       </div>
+
+      {/* Footer */}
+      <div className="py-6 text-center text-sm text-gray-500 border-t border-gray-500">
+          <p>&copy; 2025 Skill Creatives. All rights reserved.</p>
+        </div>
+
+ 
     </footer>
+       </>
   );
 };
 
-export default Footer;
+export default App;

@@ -135,3 +135,30 @@
   }
 }
 
+/* Add this inside globals.css */
+.colorful-stroke {
+  position: relative;
+  -webkit-text-stroke: 2px transparent;
+}
+
+.colorful-stroke::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* background:white; */
+  -webkit-background-clip: text;
+  color:black;
+  -webkit-text-stroke: 2px transparent;
+  z-index: 2;
+}
+
+.colorful-stroke::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-text-stroke: 4px rgb(252, 252, 252); /* Outer stroke */
+  color: transparent;
+  z-index: 1;
+}

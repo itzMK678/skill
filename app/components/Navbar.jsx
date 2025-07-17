@@ -1,133 +1,188 @@
 'use client';
-import React, { useState } from 'react';
+
+import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import logo from '../public/logo.png';
 import { FaChevronDown } from 'react-icons/fa';
-import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
-const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [isServicesOpen, setIsServicesOpen] = useState(false);
+export default function App() {
+  const router = useRouter();
+  const [isOpenLeft, setIsOpenLeft] = useState(false);
+  const [isOpenRight, setIsOpenRight] = useState(false);
+  const [selectedLeft, setSelectedLeft] = useState('Home');
+  const [selectedRight, setSelectedRight] = useState('Skills');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const toggleMenu = () => setIsOpen(!isOpen);
-    const toggleServices = () => setIsServicesOpen(!isServicesOpen);
+  const rightBtnRef = useRef(null);
+  const leftBtnRef = useRef(null);
 
-    const menuItems = [
-        { name: 'Home', link: '/' },
-        { name: 'About', link: '/about' },
-        { 
-            name: 'Services', 
-            dropdown: true,
-            subMenu: [
-                { name: 'SEO', link: '/services/seo' },
-                { name: 'Pay-Per-Click (PPC)', link: '/services/ppc' },
-                { name: 'Social Media Marketing', link: '/services/social-media-marketing' },
-                { name: 'Web Development', link: '/services/web-development' },
-                { name: 'Shopify Development', link: '/services/shopify-development' }, // Added Shopify
-                { name: 'Blogging & Content Writing', link: '/services/blogging-content-writing' }, // Added Blogging & Content Writing
-                { name: 'Conversion Rate Optimization (CRO)', link: '/services/cro' }, // Added CRO
-            ]
-        },
-        { name: 'Contact', link: '/contact' }
-    ];
+  const leftOptions = [
+    { name: 'Home', link: '/' },
+    { name: 'About', link: '/about' },
+    { name: 'Contact', link: '/contact' },
+  ];
 
-    return (
-        <nav className="bg-black p-4">
-            <div className="container mx-auto flex justify-between items-center">
-                <div className="flex items-center">
-                    <Image src={logo} alt="Logo" className="h-8 w-8 mr-2" />
-                    <span className="text-white text-lg font-semibold">Skill Creatives</span>
-                </div>
+  const rightOptions = [
+    { name: 'Skills', link: '/' },
+    { name: 'SEO', link: '/services/seo' },
+    { name: 'Pay-Per-Click (PPC)', link: '/services/ppc' },
+    { name: 'Social Media Marketing', link: '/services/social-media-marketing' },
+    { name: 'Web Development', link: '/services/web-development' },
+    { name: 'Shopify Development', link: '/services/shopify-development' },
+    { name: 'Blogging & Content Writing', link: '/services/blogging-content-writing' },
+    { name: 'Conversion Rate Optimization (CRO)', link: '/services/cro' },
+  ];
 
-                {/* Desktop Menu */}
-                <div className="hidden md:flex z-50 space-x-6">
-                    {menuItems.map((item, index) => (
-                        item.dropdown ? (
-                            <div key={index} className="relative group">
-                                <button 
-                                    onClick={toggleServices} 
-                                    className="text-white hover:text-first flex items-center gap-1"
-                                >
-                                    {item.name} <FaChevronDown className="text-sm" />
-                                </button>
-                                <div 
-                                    className={`absolute left-0 mt-1 top-4 bg-black w-52 rounded shadow-md ${isServicesOpen ? 'block' : 'hidden'} group-hover:block`}
-                                >
-                                    {item.subMenu.map((sub, i) => (
-                                        <a key={i} href={sub.link} className="block px-4 py-2 text-gray-300 hover:bg-gray-600">
-                                            {sub.name}
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                        ) : (
-                            <a key={index} href={item.link} className="text-gray-300 hover:text-white">
-                                {item.name}
-                            </a>
-                        )
-                    ))}
-                </div>
+  const [rightDropdownTop, setRightDropdownTop] = useState(0);
+  const [leftDropdownTop, setLeftDropdownTop] = useState(0);
 
-                {/* Desktop Button */}
-                <div className="hidden md:block">
-                    <a href="#" className="bg-first text-white px-4 py-2 rounded hover:bg-first-dark">Get Started</a>
-                </div>
+  useEffect(() => {
+    if (rightBtnRef.current) {
+      setRightDropdownTop(rightBtnRef.current.offsetTop + rightBtnRef.current.offsetHeight);
+    }
+    if (leftBtnRef.current) {
+      setLeftDropdownTop(leftBtnRef.current.offsetTop + leftBtnRef.current.offsetHeight);
+    }
+  }, [isOpenRight, isOpenLeft]);
 
-                {/* Mobile Hamburger */}
-                <button onClick={toggleMenu} className="md:hidden z-50 text-gray-300 hover:text-white focus:outline-none">
-                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
+  return (
+    <>
+      {/* Desktop Navbar */}
+      <div className="hidden sm:flex justify-center items-center py-5 bg-black">
+        <div className="relative flex items-center">
+
+          {/* Left Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setIsOpenLeft(true)}
+            onMouseLeave={() => setIsOpenLeft(false)}
+          >
+            <div
+              ref={leftBtnRef}
+              className=" w-[320px] lg:w-[400px] h-[50px] text-white rounded-l-[20px] flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 cursor-pointer hover:from-blue-600 hover:to-pink-600 transition duration-300"
+            >
+              {selectedLeft} <FaChevronDown className="ml-2 text-sm" />
             </div>
 
-            {/* Mobile Drawer */}
-            {isOpen && (
-                <>
-                    {/* Backdrop */}
-                    <div 
-                        className="fixed inset-0 bg-black bg-opacity-50 z-40"
-                        onClick={toggleMenu}
-                    ></div>
-
-                    {/* Drawer */}
-                    <div className="fixed top-0 left-0 w-64 h-full bg-gray-800 z-50 transform transition-transform duration-300 ease-in-out translate-x-0">
-                        <div className="p-4 space-y-2">
-                            {menuItems.map((item, index) => (
-                                item.dropdown ? (
-                                    <div key={index}>
-                                        <button 
-                                            onClick={toggleServices} 
-                                            className="w-full text-left text-gray-300 hover:text-white flex justify-between px-2 py-2"
-                                        >
-                                            {item.name} <FaChevronDown className="text-sm" />
-                                        </button>
-                                        {isServicesOpen && (
-                                            <div className="pl-4">
-                                                {item.subMenu.map((sub, i) => (
-                                                    <a key={i} href={sub.link} className="block text-gray-300 hover:text-white px-2 py-1">
-                                                        {sub.name}
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
-                                ) : (
-                                    <a key={index} href={item.link} className="block text-gray-300 hover:text-white px-2 py-2">
-                                        {item.name}
-                                    </a>
-                                )
-                            ))}
-
-                            {/* Mobile Get Started Button */}
-                            <div className="mt-4">
-                                <a href="#" className="block bg-first text-white px-4 py-2 rounded hover:bg-first-dark text-center">Get Started</a>
-                            </div>
-                        </div>
-                    </div>
-                </>
+            {isOpenLeft && (
+              <ul
+                className="absolute w-[300px] bg-black text-white rounded-b-[10px] shadow-md z-20"
+                style={{ top: leftDropdownTop }}
+              >
+                {leftOptions.map((item) => (
+                  <li
+                    key={item.name}
+                    className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                    onClick={() => {
+                      setSelectedLeft(item.name);
+                      setIsOpenLeft(false);
+                      router.push(item.link);
+                    }}
+                  >
+                    {item.name}
+                  </li>
+                ))}
+              </ul>
             )}
-        </nav>
-    );
-};
+          </div>
 
-export default Navbar;
+          {/* Center Logo + Brand */}
+          <div className="absolute top-[-1px] left-1/2 -translate-x-1/2 z-30">
+            <div className="h-13 flex items-center gap-2 px-4 py-2 rounded-[22px] bg-black shadow-md">
+              <div className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center font-bold">
+                <Image src={logo} alt="Logo" width={24} height={24} />
+              </div>
+              <span className="text-white text-lg font-semibold">Skill Creatives</span>
+            </div>
+          </div>
+
+          {/* Right Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setIsOpenRight(true)}
+            onMouseLeave={() => setIsOpenRight(false)}
+          >
+            <div
+              ref={rightBtnRef}
+              className="w-[320px] lg:w-[400px] h-[50px] text-white rounded-r-[20px] flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 cursor-pointer hover:from-blue-600 hover:to-pink-600 transition duration-300 gap-2"
+            >
+              <span className="text-center">{selectedRight}</span>
+              <FaChevronDown className="text-sm" />
+            </div>
+
+            {isOpenRight && (
+              <ul
+                className="absolute w-[300px] bg-black text-white rounded-b-[10px] shadow-md z-20"
+                style={{ top: rightDropdownTop }}
+              >
+                {rightOptions.map((item) => (
+                  <li
+                    key={item.name}
+                    className="px-4 py-2 hover:bg-gray-700 cursor-pointer text-center"
+                    onClick={() => {
+                      setSelectedRight(item.name);
+                      setIsOpenRight(false);
+                      router.push(item.link);
+                    }}
+                  >
+                    {item.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Navbar (<640px) */}
+      <div className="sm:hidden w-full flex justify-between items-center px-4 py-3 bg-black">
+        {/* Logo + Brand */}
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center font-bold">
+            <Image src={logo} alt="Logo" width={24} height={24} />
+          </div>
+          <span className="text-white text-lg font-semibold">Skill Creatives</span>
+        </div>
+
+        {/* Toggle Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="text-white focus:outline-none"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d={mobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu Options */}
+      {mobileMenuOpen && (
+        <div className="sm:hidden flex flex-col items-center w-full px-4 gap-2 py-3 bg-black">
+          {[...leftOptions, ...rightOptions].map((item, index) => (
+            <div
+              key={index}
+              onClick={() => {
+                router.push(item.link);
+                setMobileMenuOpen(false);
+              }}
+              className="text-white bg-gray-800 px-4 py-3 rounded hover:bg-gray-700 cursor-pointer w-full text-center"
+            >
+              {item.name}
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}

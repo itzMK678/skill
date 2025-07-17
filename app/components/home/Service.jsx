@@ -1,5 +1,13 @@
 import React from 'react';
-import { FaSearch, FaBullhorn, FaShareAlt, FaChartLine, FaLaptopCode, FaShopify, FaPenAlt } from 'react-icons/fa'; // 🆕 Added FaPenAlt for content writing
+import {
+  FaSearch,
+  FaBullhorn,
+  FaShareAlt,
+  FaChartLine,
+  FaLaptopCode,
+  FaShopify,
+  FaPenAlt
+} from "react-icons/fa";
 
 const services = [
   {
@@ -8,8 +16,8 @@ const services = [
     gradientFrom: 'from-purple-600',
     gradientTo: 'to-purple-800',
     title: 'Search Engine Optimization (SEO)',
-    description:
-      'Improve your website\'s visibility on search engines and drive organic traffic with our proven SEO strategies.',
+    shortTitle: 'SEO',
+    description: 'Improve your website\'s visibility on search engines with our expert strategies in **Search Engine Optimization (SEO)**.',
   },
   {
     id: 2,
@@ -17,8 +25,8 @@ const services = [
     gradientFrom: 'from-purple-500',
     gradientTo: 'to-indigo-600',
     title: 'Pay-Per-Click (PPC)',
-    description:
-      'Maximize your ROI with targeted PPC campaigns that drive qualified leads and boost conversions.',
+    shortTitle: 'PPC',
+    description: 'Drive qualified traffic and boost sales using **Pay-Per-Click (PPC)** campaigns tailored to your audience.',
   },
   {
     id: 3,
@@ -26,8 +34,8 @@ const services = [
     gradientFrom: 'from-pink-500',
     gradientTo: 'to-purple-600',
     title: 'Social Media Marketing',
-    description:
-      'Build brand awareness and engage with your audience on platforms like Facebook, Instagram, and Twitter.',
+    shortTitle: 'Social Media',
+    description: 'Engage and grow your audience with targeted content through **Social Media Marketing**.',
   },
   {
     id: 4,
@@ -35,66 +43,72 @@ const services = [
     gradientFrom: 'from-green-500',
     gradientTo: 'to-teal-600',
     title: 'Conversion Rate Optimization (CRO)',
-    description:
-      'Optimize your website to increase the number of visitors who take your desired actions—turning leads into customers.',
+    shortTitle: 'CRO',
+    description: 'Enhance user experience and boost revenue using **Conversion Rate Optimization (CRO)** techniques.',
   },
   {
     id: 5,
-    icon: FaLaptopCode, 
+    icon: FaLaptopCode,
     gradientFrom: 'from-blue-500',
     gradientTo: 'to-blue-700',
     title: 'Web Development',
-    description:
-      'Create stunning, responsive websites that deliver exceptional user experiences and drive business growth.',
+    shortTitle: 'Web Dev',
+    description: 'Design and build modern, fast websites with our **Web Development** services.',
   },
   {
     id: 6,
-    icon: FaShopify, // 🆕
+    icon: FaShopify,
     gradientFrom: 'from-green-400',
     gradientTo: 'to-green-600',
     title: 'Shopify Development',
-    description:
-      'Launch and scale your eCommerce business with beautiful, high-performing Shopify stores tailored to your brand.',
+    shortTitle: 'Shopify',
+    description: 'Create seamless online stores with our scalable **Shopify Development** solutions.',
   },
   {
     id: 7,
-    icon: FaPenAlt, // 🆕 Added FaPenAlt for blogging and content writing
+    icon: FaPenAlt,
     gradientFrom: 'from-orange-400',
     gradientTo: 'to-yellow-500',
     title: 'Blogging & Content Writing',
-    description:
-      'Engage your audience with high-quality, SEO-friendly blog posts and compelling content that resonates with your brand voice.',
+    shortTitle: 'Blogging',
+    description: 'Communicate effectively with high-quality **Blogging & Content Writing** that speaks to your audience.',
   },
-];
+]
 
 const Service = () => {
   return (
-    <div className="bg-gradient-to-br from-black to-purple-900 py-24">
-      <div className="container px-6 mx-auto text-center">
-        <h2 className="text-5xl font-extrabold text-white mb-12">
-          Our Services
-        </h2>
-        <div className="my-10 text-center">
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Whether you're looking to increase your organic reach, drive paid traffic, or convert visitors into leads, we have a tailored solution for you. Let’s take your business to the next level!
-          </p>
-        </div>
-        <div className="flex flex-wrap justify-center gap-8">
+   <div className="min-h-[600px] bg-gradient-to-b from-pink-900 via-purple-900 to-black py-24">
+       <div className="container px-6 mx-auto text-center">
+        <h2 className="text-5xl font-extrabold text-white mb-12">Our Services</h2>
+        <div className="flex flex-wrap justify-center gap-6">
           {services.map((service) => (
             <div
               key={service.id}
-              className="w-full sm:w-1/2 lg:w-1/4 transform transition-transform duration-300 hover:scale-105"
+              className="group relative z-0 w-64 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl overflow-hidden transition-all duration-300 h-20 hover:h-52 hover:z-10 hover:top-0"
             >
-              <div className="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-700">
+              {/* Icon + Title Row */}
+              <div className="flex items-center gap-4 p-4">
                 <div
-                  className={`bg-gradient-to-br ${service.gradientFrom} ${service.gradientTo} text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6`}
+                  className={`bg-gradient-to-br ${service.gradientFrom} ${service.gradientTo} text-white rounded-full w-12 h-12 flex items-center justify-center`}
                 >
-                  <service.icon className="w-8 h-8" />
+                  <service.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-lg text-gray-300">{service.description}</p>
+                <h3 className="text-white text-xl font-bold">{service.shortTitle}</h3>
+              </div>
+
+              {/* Description */}
+              <div className="px-4 pb-4 pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-left">
+                <p className="text-base text-purple-100 leading-relaxed">
+                  {service.description.split('**').map((text, i) =>
+                    i % 2 === 1 ? (
+                      <strong key={i} className="text-purple-300 font-semibold">
+                        {text}
+                      </strong>
+                    ) : (
+                      text
+                    )
+                  )}
+                </p>
               </div>
             </div>
           ))}

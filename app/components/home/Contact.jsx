@@ -12,8 +12,15 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" });
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setErrors((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
   };
 
   const validateForm = () => {
@@ -33,35 +40,18 @@ const Contact = () => {
     setLoading(true);
     setTimeout(() => {
       alert("Form submitted successfully!");
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
       setLoading(false);
     }, 1500);
   };
 
-  const Input = ({ label, name, type = "text" }) => (
-    <div className="relative w-full">
-      <input
-        type={type}
-        name={name}
-        value={formData[name]}
-        onChange={handleChange}
-        className={`peer w-full px-4 pt-6 pb-2 text-base text-gray-800 bg-white border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
-          errors[name] ? "border-red-500" : "border-gray-300"
-        }`}
-        placeholder=" "
-      />
-      <label
-        htmlFor={name}
-        className="absolute left-4 top-2 text-sm text-gray-500 transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-indigo-600"
-      >
-        {label}
-      </label>
-      {errors[name] && <p className="text-sm text-red-500 mt-1">{errors[name]}</p>}
-    </div>
-  );
-
   return (
-    <section className="bg-gradient-to-br from-black to-purple-900 py-24">
+    <section className="bg-gradient-to-b from-black via-indigo-800 to-purple-500  py-16 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-semibold text-white">Contact Us</h2>
@@ -72,26 +62,49 @@ const Contact = () => {
           {/* Contact Form */}
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 space-y-5"
+            className="shadow-sm border border-white/20 space-y-5 bg-white/10 backdrop-blur-lg rounded-lg p-6"
           >
-            <Input name="name" label="Name" />
-            <Input name="email" label="Email" type="email" />
-            <Input name="subject" label="Subject" />
+            {["name", "email", "subject"].map((field) => (
+              <div key={field} className="relative w-full">
+                <input
+                  id={field}
+                  type={field === "email" ? "email" : "text"}
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  className={`peer w-full px-4 pt-6 pb-2 text-base text-white placeholder-white/70 bg-white/10 backdrop-blur-md border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                    errors[field] ? "border-red-500" : "border-white/30"
+                  }`}
+                  placeholder=" "
+                />
+                <label
+                  htmlFor={field}
+                  className="absolute left-4 top-2 text-sm text-white/80 transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-white/50 peer-focus:top-2 peer-focus:text-sm peer-focus:text-indigo-300"
+                >
+                  {field.charAt(0).toUpperCase() + field.slice(1)}
+                </label>
+                {errors[field] && (
+                  <p className="text-sm text-red-500 mt-1">{errors[field]}</p>
+                )}
+              </div>
+            ))}
 
-            <div className="relative">
+            {/* Message textarea */}
+            <div className="relative w-full">
               <textarea
+                id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 rows="5"
-                className={`peer w-full px-4 pt-6 pb-2 text-base text-gray-800 bg-white border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
-                  errors.message ? "border-red-500" : "border-gray-300"
+                className={`peer w-full px-4 pt-6 pb-2 text-base text-white placeholder-white/70 bg-white/10 backdrop-blur-md border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                  errors.message ? "border-red-500" : "border-white/30"
                 }`}
                 placeholder=" "
               />
               <label
                 htmlFor="message"
-                className="absolute left-4 top-2 text-sm text-gray-500 transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-indigo-600"
+                className="absolute left-4 top-2 text-sm text-white/80 transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-white/50 peer-focus:top-2 peer-focus:text-sm peer-focus:text-indigo-300"
               >
                 Message
               </label>
@@ -101,30 +114,39 @@ const Contact = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-first hover:bg-second text-white font-semibold py-3 rounded-md transition duration-300"
+              className="w-full bg-first hover:bg-purple-900 text-white font-semibold py-3 rounded-md transition duration-300"
             >
               {loading ? "Sending..." : "Send Message"}
             </button>
           </form>
 
-          {/* Contact Info */}
+          {/* Contact Info Boxes */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-4 text-gray-200">
-              <Mail className="text-first" />
+            {/* Email Box */}
+            <div className="cursor-pointer flex items-center space-x-4 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg p-4 text-white">
+              <Mail />
               <div>
                 <p className="text-sm font-medium">Email</p>
-                <p className="text-base">info@example.com</p>
+                <a href="mailto:info@example.com" target="_blank" rel="noopener noreferrer">
+                  <p className="text-base">info@example.com</p>
+                </a>
               </div>
             </div>
-            <div className="flex items-center space-x-4 text-white">
-              <Phone className="text-first" />
+
+            {/* Phone Box */}
+            <div className="cursor-pointer flex items-center space-x-4 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg p-4 text-white">
+              <Phone />
               <div>
                 <p className="text-sm font-medium">Phone</p>
-                <p className="text-base">+1 234 567 890</p>
+                <a href="tel:+1234567890">
+                  <p className="text-base">+1 234 567 890</p>
+                </a>
               </div>
             </div>
-            <div className="flex items-center space-x-4 text-white">
-              <MapPin className="text-first" />
+
+            {/* Address Box */}
+            <div className="cursor-pointer flex items-center space-x-4 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg p-4 text-white">
+              <MapPin />
               <div>
                 <p className="text-sm font-medium">Address</p>
                 <p className="text-base">123 Street, City, Country</p>
