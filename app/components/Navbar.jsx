@@ -2,21 +2,28 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import logo from '../public/logo.png';
+import logo from '../public/logo.png'; // Adjust the path based on your file
 import { FaChevronDown } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 
 export default function App() {
   const router = useRouter();
+
+  // State for desktop dropdowns
   const [isOpenLeft, setIsOpenLeft] = useState(false);
   const [isOpenRight, setIsOpenRight] = useState(false);
   const [selectedLeft, setSelectedLeft] = useState('Home');
   const [selectedRight, setSelectedRight] = useState('Skills');
+
+  // State for mobile dropdowns
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [pagesOpen, setPagesOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
-  const rightBtnRef = useRef(null);
   const leftBtnRef = useRef(null);
+  const rightBtnRef = useRef(null);
 
+  // Dropdown content
   const leftOptions = [
     { name: 'Home', link: '/' },
     { name: 'About', link: '/about' },
@@ -34,6 +41,10 @@ export default function App() {
     { name: 'Conversion Rate Optimization (CRO)', link: '/services/cro' },
   ];
 
+  const pages = leftOptions;
+  const services = rightOptions;
+
+  // Positioning for dropdowns
   const [rightDropdownTop, setRightDropdownTop] = useState(0);
   const [leftDropdownTop, setLeftDropdownTop] = useState(0);
 
@@ -60,14 +71,14 @@ export default function App() {
           >
             <div
               ref={leftBtnRef}
-              className=" w-[320px] lg:w-[400px] h-[50px] text-white rounded-l-[20px] flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 cursor-pointer hover:from-blue-600 hover:to-pink-600 transition duration-300"
+              className="w-[320px] lg:w-[400px] h-[50px] text-white rounded-l-[20px] flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 cursor-pointer hover:from-blue-600 hover:to-pink-600 transition duration-300"
             >
               {selectedLeft} <FaChevronDown className="ml-2 text-sm" />
             </div>
 
             {isOpenLeft && (
               <ul
-                className="absolute w-[300px] bg-black text-white rounded-b-[10px] shadow-md z-20"
+                className="absolute w-[300px] bg-black text-white rounded-b-[10px] shadow-md z-40"
                 style={{ top: leftDropdownTop }}
               >
                 {leftOptions.map((item) => (
@@ -87,8 +98,8 @@ export default function App() {
             )}
           </div>
 
-          {/* Center Logo + Brand */}
-          <div className="absolute top-[-1px] left-1/2 -translate-x-1/2 z-30">
+          {/* Center Logo */}
+          <div className="absolute top-[-1px] left-1/2 -translate-x-1/2 z-50">
             <div className="h-13 flex items-center gap-2 px-4 py-2 rounded-[22px] bg-black shadow-md">
               <div className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center font-bold">
                 <Image src={logo} alt="Logo" width={24} height={24} />
@@ -107,13 +118,13 @@ export default function App() {
               ref={rightBtnRef}
               className="w-[320px] lg:w-[400px] h-[50px] text-white rounded-r-[20px] flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 cursor-pointer hover:from-blue-600 hover:to-pink-600 transition duration-300 gap-2"
             >
-              <span className="text-center">{selectedRight}</span>
+              <span>{selectedRight}</span>
               <FaChevronDown className="text-sm" />
             </div>
 
             {isOpenRight && (
               <ul
-                className="absolute w-[300px] bg-black text-white rounded-b-[10px] shadow-md z-20"
+                className="absolute w-[300px] bg-black text-white rounded-b-[10px] shadow-md z-40"
                 style={{ top: rightDropdownTop }}
               >
                 {rightOptions.map((item) => (
@@ -135,9 +146,8 @@ export default function App() {
         </div>
       </div>
 
-      {/* Mobile Navbar (<640px) */}
+      {/* Mobile Navbar */}
       <div className="sm:hidden w-full flex justify-between items-center px-4 py-3 bg-black">
-        {/* Logo + Brand */}
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center font-bold">
             <Image src={logo} alt="Logo" width={24} height={24} />
@@ -145,7 +155,6 @@ export default function App() {
           <span className="text-white text-lg font-semibold">Skill Creatives</span>
         </div>
 
-        {/* Toggle Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="text-white focus:outline-none"
@@ -160,27 +169,60 @@ export default function App() {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d={mobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+              d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
             />
           </svg>
         </button>
       </div>
 
-      {/* Mobile Menu Options */}
+      {/* Mobile Dropdown Menus */}
       {mobileMenuOpen && (
-        <div className="sm:hidden flex flex-col items-center w-full px-4 gap-2 py-3 bg-black">
-          {[...leftOptions, ...rightOptions].map((item, index) => (
-            <div
-              key={index}
-              onClick={() => {
-                router.push(item.link);
-                setMobileMenuOpen(false);
-              }}
-              className="text-white bg-gray-800 px-4 py-3 rounded hover:bg-gray-700 cursor-pointer w-full text-center"
+        <div className="sm:hidden flex flex-col w-full px-4 gap-2 py-3 bg-black">
+          {/* Pages Dropdown */}
+          <div className="w-full">
+            <button
+              onClick={() => setPagesOpen(!pagesOpen)}
+              className="w-full text-white bg-gray-800 px-4 py-3 rounded hover:bg-gray-700 text-left"
             >
-              {item.name}
-            </div>
-          ))}
+              Pages
+            </button>
+            {pagesOpen &&
+              pages.map((item, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    router.push(item.link);
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-white bg-gray-700 px-4 py-2 ml-4 rounded hover:bg-gray-600 cursor-pointer"
+                >
+                  {item.name}
+                </div>
+              ))}
+          </div>
+
+          {/* Services Dropdown */}
+          <div className="w-full">
+            <button
+              onClick={() => setServicesOpen(!servicesOpen)}
+              className="w-full text-white bg-gray-800 px-4 py-3 rounded hover:bg-gray-700 text-left"
+            >
+              Services
+            </button>
+            {servicesOpen &&
+              services.map((item, index) => (
+                <div
+                  key={index}
+                  onClick={() => {
+                    router.push(item.link);
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-white bg-gray-700 px-4 py-2 ml-4 rounded hover:bg-gray-600 cursor-pointer"
+                >
+                  {item.name}
+                </div>
+              ))}
+          </div>
         </div>
       )}
     </>
