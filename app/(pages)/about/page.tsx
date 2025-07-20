@@ -1,5 +1,6 @@
 'use client';
-
+import projectImage from '../../public/web1.webp'
+import projectImage2 from '../../public/web2.webp'
 import React, { useState } from 'react';
 import { Code, Palette, Smartphone, Search, Globe, Zap, Heart, Target, Lightbulb, Shield, Rocket, Users } from 'lucide-react';
 
@@ -47,10 +48,10 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-gradient-to-b from-black to-blue-400 min-h-screen">
       {/* Map Section */}
       <div className="relative w-full">
-     <div className="h-[150px] w-full bg-gradient-to-b from-black to-white">.</div>
+     <div className="h-[150px] w-full ">.</div>
 
         {/* Floating Heading */}
       <p
@@ -64,119 +65,124 @@ const ContactPage = () => {
   About-Us
 </p>
 
-         <p className="pt-[50px] text-lg md:text-xl text-black mb-12 max-w-2xl mx-auto leading-relaxed">
+         <p className="pt-[50px] text-lg md:text-xl text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed">
           We are a digital marketing agency passionate about driving business growth through innovative online solutions. From SEO to social media strategies, we empower brands to reach their full potential.
         </p>
       </div>
 
-<div className="w-full flex flex-col gap-6 p-6 bg-gray-100">
+<div className="w-full flex flex-col gap-6 p-6 bg-gradient-to-b from-black via-blue-700 via-violet-700 to-pink-500">
   {/* Slider container */}
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+      <div className="min-h-screen  p-6">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 h-[600px]">
           
           {/* Services Card - Expandable */}
-          <div className="group relative bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-700 cursor-pointer border border-gray-100">
+          <div className="group relative bg-transparent rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-700 cursor-pointer border border-gray-100">
             {/* Main Services Header */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-700 text-white flex flex-col items-center justify-center text-center p-6 z-20 transition-all duration-700 group-hover:-translate-y-full">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-700 text-white flex flex-col items-center justify-center text-center p-6 z-20 transition-all duration-700 group-hover:-translate-y-full">
               <Code className="w-16 h-16 mb-4 opacity-90" />
               <h2 className="text-2xl font-bold mb-2">Our Services</h2>
               <p className="text-blue-100 text-sm">Hover to explore what we offer</p>
             </div>
 
             {/* Services Grid - Revealed on Hover */}
-            <div className="absolute inset-0 bg-white p-4 transition-all duration-700 translate-y-full group-hover:translate-y-0">
-              <div className="h-full grid grid-cols-2 gap-3">
-                {services.map((service, index) => {
-                  const Icon = service.icon;
-                  return (
-                    <div 
-                      key={index} 
-                      className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-4 flex flex-col items-center text-center hover:shadow-md transition-all duration-300 hover:scale-105 border border-gray-100"
-                      style={{ 
-                        animationDelay: `${index * 100}ms`,
-                        animation: 'fadeInUp 0.6s ease-out forwards'
-                      }}
-                    >
-                      <Icon className="w-8 h-8 text-blue-600 mb-2" />
-                      <h4 className="font-semibold text-gray-800 text-sm mb-1">{service.title}</h4>
-                      <p className="text-gray-600 text-xs leading-tight">{service.desc}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-4 transition-all duration-700 translate-y-full group-hover:translate-y-0 border border-white/20 rounded-xl shadow-inner">
+ <div className="h-full grid grid-cols-2 gap-3">
+  {services.map((service, index) => {
+    const Icon = service.icon;
+    return (
+      <div
+        key={index}
+        className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-4 flex flex-col items-center text-center hover:shadow-md transition-all duration-300 hover:scale-105"
+        style={{
+          animationDelay: `${index * 100}ms`,
+          animation: 'fadeInUp 0.6s ease-out forwards',
+        }}
+      >
+        <Icon className="w-8 h-8 text-blue-500 mb-2" />
+        <h4 className="font-semibold text-white text-sm mb-1">{service.title}</h4>
+        <p className="text-white/80 text-xs leading-tight">{service.desc}</p>
+      </div>
+    );
+  })}
+</div>
+</div>
+
           </div>
 
-          {/* Values Card */}
-          <div className="group relative bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-700 cursor-pointer border border-gray-100">
-            {/* Values Header */}
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white flex flex-col items-center justify-center text-center p-6 z-20 transition-all duration-700 group-hover:-translate-y-full">
-              <Heart className="w-16 h-16 mb-4 opacity-90" />
-              <h2 className="text-2xl font-bold mb-2">Our Values</h2>
-              <p className="text-emerald-100 text-sm">The principles that guide us</p>
-            </div>
+{/* Values Card */}
+<div className="group relative bg-white/5 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-700 cursor-pointer border border-white/10">
+  {/* Values Header */}
+  <div className="absolute inset-0 bg-gradient-to-br from-emerald-300 to-emerald-800 text-white flex flex-col items-center justify-center text-center p-6 z-20 transition-all duration-700 group-hover:-translate-y-full">
+    <Heart className="w-16 h-16 mb-4 opacity-90" />
+    <h2 className="text-2xl font-bold mb-2">Our Values</h2>
+    <p className="text-emerald-100 text-sm">The principles that guide us</p>
+  </div>
 
-            {/* Values Content */}
-            <div className="absolute inset-0 bg-white p-6 transition-all duration-700 translate-y-full group-hover:translate-y-0">
-              <div className="h-full flex flex-col justify-center space-y-4">
-                {values.map((value, index) => {
-                  const Icon = value.icon;
-                  return (
-                    <div 
-                      key={index} 
-                      className="flex items-center space-x-4 p-3 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 hover:shadow-md transition-all duration-300 border border-emerald-100"
-                      style={{ 
-                        animationDelay: `${index * 150}ms`,
-                        animation: 'slideInLeft 0.6s ease-out forwards'
-                      }}
-                    >
-                      <Icon className="w-8 h-8 text-emerald-600 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-gray-800">{value.title}</h4>
-                        <p className="text-gray-600 text-sm">{value.desc}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+  {/* Values Content */}
+  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-6 transition-all duration-700 translate-y-full group-hover:translate-y-0 border-t border-white/10">
+    <div className="h-full flex flex-col justify-center space-y-4">
+      {values.map((value, index) => {
+        const Icon = value.icon;
+        return (
+          <div 
+            key={index} 
+            className="flex items-center space-x-4 p-3 rounded-xl bg-white/10 backdrop-blur-md hover:shadow-md transition-all duration-300 border border-white/20"
+            style={{ 
+              animationDelay: `${index * 150}ms`,
+              animation: 'slideInLeft 0.6s ease-out forwards'
+            }}
+          >
+            <Icon className="w-8 h-8 text-emerald-300 flex-shrink-0" />
+            <div>
+              <h4 className="font-semibold text-white">{value.title}</h4>
+              <p className="text-white/80 text-sm">{value.desc}</p>
             </div>
           </div>
+        );
+      })}
+    </div>
+  </div>
+</div>
 
-          {/* Mission Card */}
-          <div className="group relative bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-700 cursor-pointer border border-gray-100">
-            {/* Mission Header */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-purple-700 text-white flex flex-col items-center justify-center text-center p-6 z-20 transition-all duration-700 group-hover:-translate-y-full">
-              <Target className="w-16 h-16 mb-4 opacity-90" />
-              <h2 className="text-2xl font-bold mb-2">Our Mission</h2>
-              <p className="text-purple-100 text-sm">Driving digital transformation</p>
-            </div>
 
-            {/* Mission Content */}
-            <div className="absolute inset-0 bg-white p-6 transition-all duration-700 translate-y-full group-hover:translate-y-0 flex flex-col justify-center">
-              <div className="text-center space-y-6">
-                <Rocket className="w-20 h-20 text-purple-600 mx-auto opacity-80" />
-                <div className="space-y-4">
-                  <h3 className="text-xl font-bold text-gray-800">Empowering Digital Success</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    We're dedicated to transforming businesses through innovative digital solutions that drive growth, enhance user experiences, and create lasting value in the modern world.
-                  </p>
-                  <div className="flex justify-center space-x-8 pt-4">
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-purple-600">50+</div>
-                      <div className="text-xs text-gray-500">Projects</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-purple-600">100%</div>
-                      <div className="text-xs text-gray-500">Satisfaction</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+         {/* Mission Card */}
+<div className="group relative bg-white/5 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-700 cursor-pointer border border-white/10">
+  {/* Mission Header */}
+  <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-700 text-white flex flex-col items-center justify-center text-center p-6 z-20 transition-all duration-700 group-hover:-translate-y-full">
+    <Target className="w-16 h-16 mb-4 opacity-90" />
+    <h2 className="text-2xl font-bold mb-2">Our Mission</h2>
+    <p className="text-purple-100 text-sm">Driving digital transformation</p>
+  </div>
+
+  {/* Mission Content (Glassy) */}
+  <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md p-6 transition-all duration-700 translate-y-full group-hover:translate-y-0 flex flex-col justify-center border-t border-white/10">
+    <div className="text-center space-y-6">
+      <Rocket className="w-20 h-20 text-purple-300 mx-auto opacity-80" />
+      <div className="space-y-4">
+        <h3 className="text-xl font-bold text-white">Empowering Digital Success</h3>
+        <p className="text-white/80 leading-relaxed">
+          We're dedicated to transforming businesses through innovative digital solutions that drive growth, enhance user experiences, and create lasting value in the modern world.
+        </p>
+        <div className="flex justify-center space-x-8 pt-4">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-purple-300">50+</div>
+            <div className="text-xs text-white/70">Projects</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-purple-300">100%</div>
+            <div className="text-xs text-white/70">Satisfaction</div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+
+      
 
       <style jsx>{`
         @keyframes fadeInUp {
@@ -201,8 +207,12 @@ const ContactPage = () => {
           }
         }
       `}</style>
+
     </div>
+   
+   
 </div>
+
 
     </div>
   );

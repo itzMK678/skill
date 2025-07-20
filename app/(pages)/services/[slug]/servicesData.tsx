@@ -1,46 +1,62 @@
-const services = [
-    {
-      id: 1,
-      slug: 'seo',
-      title: 'Search Engine Optimization (SEO)',
-      description: 
-        'Elevate your website\'s ranking on search engines like Google to attract high-quality organic traffic using advanced, data-driven SEO strategies.',
-      overview: 
-        'Search Engine Optimization (SEO) is the cornerstone of digital visibility, designed to improve your website’s position on search engine results pages (SERPs). Our SEO services combine technical expertise, content excellence, and strategic link-building to drive sustainable growth. By aligning with the latest algorithm updates and user intent, we ensure your website not only ranks higher but also delivers a superior user experience.',
-      process:
-        'Our SEO process begins with a detailed website audit to identify technical issues, followed by in-depth keyword research and competitor analysis. We optimize on-page elements like meta tags, headers, and content, while addressing technical SEO aspects such as site speed, crawlability, and schema markup. Off-page efforts include high-quality link-building and local SEO strategies. Monthly performance reports, powered by tools like Google Analytics, SEMrush, and Ahrefs, ensure transparency and continuous improvement.',
-      benefits: [
-        'Increased organic traffic and brand visibility',
-        'Higher ROI compared to paid advertising',
-        'Long-term, sustainable results',
-        'Improved user experience and site performance',
-      ],
-      toolsUsed: [
-        'Google Analytics',
-        'Google Search Console',
-        'SEMrush',
-        'Ahrefs',
-        'Screaming Frog',
-        'Moz',
-      ],
-      caseStudy: {
-        title: 'Local Retail Chain SEO Success',
-        summary: 'We helped a regional retail chain improve their local SEO, resulting in a 45% increase in organic traffic and a 30% boost in in-store visits within 6 months.',
-      },
-      additionalInfo: {
-        pricing: '$1000 - $5000/month',
-        duration: '3 - 6 months for initial results, ongoing for sustained growth',
-        recommendedFor: 'Businesses seeking long-term organic growth, eCommerce platforms, local businesses aiming for local SEO dominance, and B2B companies targeting niche keywords.',
-        features: [
-          'Advanced keyword research and optimization',
-          'Technical SEO audit and fixes (e.g., site speed, mobile usability)',
-          'High-quality content creation and optimization',
-          'Mobile SEO and voice search optimization',
-          'Authority-building link acquisition campaigns',
-          'Local SEO and Google My Business optimization',
-        ],
-      },
+import client1 from "../../../public/client1.jpeg"
+import client2 from "../../../public/client2.jpeg"
+import client3 from "../../../public/client3.jpeg"
+
+
+
+  const services = [
+  {
+    id: 1,
+    slug: 'seo',
+    title: 'Search Engine Optimization (SEO)',
+    description:
+      "Elevate your website's ranking on search engines like Google to attract high-quality organic traffic using advanced, data-driven SEO strategies.",
+    overview:
+      "Search Engine Optimization (SEO) is the cornerstone of digital visibility, designed to improve your website’s position on search engine results pages (SERPs). Our SEO services combine technical expertise, content excellence, and strategic link-building to drive sustainable growth. By aligning with the latest algorithm updates and user intent, we ensure your website not only ranks higher but also delivers a superior user experience.",
+    process:
+      "Our SEO process begins with a detailed website audit to identify technical issues, followed by in-depth keyword research and competitor analysis. We optimize on-page elements like meta tags, headers, and content, while addressing technical SEO aspects such as site speed, crawlability, and schema markup. Off-page efforts include high-quality link-building and local SEO strategies. Monthly performance reports, powered by tools like Google Analytics, SEMrush, and Ahrefs, ensure transparency and continuous improvement.",
+
+    benefits: [
+      'Increased organic traffic and brand visibility',
+      'Higher ROI compared to paid advertising',
+      'Long-term, sustainable results',
+      'Improved user experience and site performance',
+    ],
+
+    // ✅ Moved toolsUsed here
+    toolsUsed: [
+      { name: 'Google Analytics' },
+      { name: 'Ahrefs' },
+      { name: 'SEMrush' },
+      { name: 'Moz' },
+      { name: 'Screaming Frog' },
+      { name: 'Google Search Console' },
+    ],
+
+    caseStudy: {
+      title: 'Local Retail Chain SEO Success',
+      image: client2,
+      summary:
+        'We helped a regional retail chain improve their local SEO, resulting in a 45% increase in organic traffic and a 30% boost in in-store visits within 6 months.',
     },
+
+    additionalInfo: {
+      pricing: '$1000 - $5000/month',
+      duration: '3 - 6 months for initial results, ongoing for sustained growth',
+      recommendedFor:
+        'Businesses seeking long-term organic growth, eCommerce platforms, local businesses aiming for local SEO dominance, and B2B companies targeting niche keywords.',
+      features: [
+        'Advanced keyword research and optimization',
+        'Technical SEO audit and fixes (e.g., site speed, mobile usability)',
+        'High-quality content creation and optimization',
+        'Mobile SEO and voice search optimization',
+        'Authority-building link acquisition campaigns',
+        'Local SEO and Google My Business optimization',
+      ],
+    },
+  },
+
+
     {
       id: 2,
       slug: 'ppc',
@@ -58,15 +74,16 @@ const services = [
         'Flexibility to adjust campaigns in real-time',
       ],
       toolsUsed: [
-        'Google Ads',
-        'Microsoft Advertising',
-        'Facebook Ads Manager',
-        'Google Keyword Planner',
-        'Optimizely',
-        'Hotjar',
-      ],
+      { name: 'Google Ads' },
+      { name: 'Microsoft Advertising' },
+      { name: 'Facebook Ads Manager' },
+      { name: 'Google Keyword Planner' },
+      { name: 'Optimizely' },
+      { name: 'Hotjar' },
+    ],
       caseStudy: {
-        title: 'eCommerce PPC Campaign',
+        title: 'Ecommerce PPC Campaign',
+         image:client3,
         summary: 'For an online retailer, we optimized Google Ads campaigns, reducing cost-per-click by 25% and increasing conversions by 40% within 3 months.',
       },
       additionalInfo: {
@@ -100,15 +117,17 @@ const services = [
         'Cost-effective advertising options',
       ],
       toolsUsed: [
-        'Hootsuite',
-        'Sprout Social',
-        'Canva',
-        'Adobe Creative Suite',
-        'Meta Business Suite',
-        'BuzzSumo',
-      ],
+      { name: 'Hootsuite' },
+      { name: 'Sprout Social' },
+      { name: 'Canva' },
+      { name: 'Adobe Creative Suite' },
+      { name: 'Optimizely' },
+      { name: 'Hotjar' },
+    ],
+    
       caseStudy: {
         title: 'Startup Social Media Growth',
+         image:client1,
         summary: 'A tech startup saw a 60% increase in Instagram followers and a 25% boost in website traffic after a 4-month SMM campaign.',
       },
       additionalInfo: {
@@ -142,15 +161,16 @@ const services = [
         'Data-driven decision-making',
       ],
       toolsUsed: [
-        'Hotjar',
-        'Google Optimize',
-        'Crazy Egg',
-        'VWO',
-        'Optimizely',
-        'Qualaroo',
-      ],
+      { name: 'Google Ads' },
+      { name: 'Microsoft Advertising' },
+      { name: 'Facebook Ads Manager' },
+      { name: 'Google Keyword Planner' },
+      { name: 'Optimizely' },
+      { name: 'Hotjar' },
+    ],
       caseStudy: {
         title: 'SaaS CRO Breakthrough',
+         image:client2,
         summary: 'For a SaaS company, we optimized their signup flow, increasing trial-to-paid conversions by 35% in 2 months.',
       },
       additionalInfo: {
@@ -183,16 +203,18 @@ const services = [
         'Scalable solutions for future growth',
         'Improved SEO and accessibility',
       ],
-      toolsUsed: [
-        'React',
-        'Node.js',
-        'WordPress',
-        'Magento',
-        'Figma',
-        'Postman',
-      ],
+    toolsUsed: [
+      { name: 'React' },
+      { name: 'Node.js' },
+      { name: 'Canva' },
+      { name: 'Postman' },
+      { name: 'Figma' },
+      { name: 'Hotjar' },
+    ],
+      
       caseStudy: {
         title: 'Corporate Website Redesign',
+         image:client3,
         summary: 'We redesigned a corporate website, improving load times by 50% and increasing user engagement by 30% within 3 months.',
       },
       additionalInfo: {
@@ -225,16 +247,18 @@ const services = [
         'Scalable for growing businesses',
         'Seamless third-party integrations',
       ],
-      toolsUsed: [
-        'Shopify',
-        'Liquid',
-        'Klaviyo',
-        'Mailchimp',
-        'ShipStation',
-        'Google Merchant Center',
-      ],
+       toolsUsed: [
+      { name: 'Shopify' },
+      { name: 'Liquid' },
+      { name: 'Canva' },
+      { name: 'Klaviyo' },
+      { name: 'Figma' },
+      { name: 'Google Merchant Center' },
+    ],
+     
       caseStudy: {
         title: 'Shopify Store Launch',
+         image:client2,
         summary: 'We launched a Shopify store for a fashion brand, achieving a 20% conversion rate increase and 50% faster load times within 2 months.',
       },
       additionalInfo: {
@@ -252,5 +276,8 @@ const services = [
       },
     },
   ];
+    
+
+  
   
   export default services;

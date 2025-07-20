@@ -34,11 +34,11 @@ const App = () => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                 className="my-1 flex flex-col items-center text-white bg-transparent rounded-md border border-transparent transition-all duration-300 hover:bg-white hover:text-gradient-to-r from-blue-500 via-purple-500 to-pink-500 ">
+                 className="p4 my-1 gap:5 flex flex-col group-icon items-center  text-white bg-transparent rounded-md border border-transparent transition-all duration-300 hover:bg-white   hover:text-red-400 ">
  
  
-                    <div className="text-2xl">{social.icon}</div>
-                    <span className="text-xs mt-1">{social.label}</span>
+                    <div className="text-2xl group-icon-hover:text-red-600 ">{social.icon}</div>
+                    <span className="text-xs group-icon-hover:text-red-600 mt-1">{social.label}</span>
                   </a>
                 ))}
               </div>
@@ -49,7 +49,7 @@ const App = () => {
 
       {/* Footer */}
       <div className="py-6 text-center text-sm text-gray-500 border-t border-gray-500">
-          <p>&copy; 2025 Skill Creatives. All rights reserved.</p>
+         <a href="https://mamoon-dev.vercel.app/"> <p>&copy; 2025 Skill Creatives. All rights reserved.</p></a>
         </div>
 
  

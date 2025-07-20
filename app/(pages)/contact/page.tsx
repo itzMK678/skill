@@ -51,7 +51,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className=" bg-gradient-to-b from-black via-blue-700 via-violet-700 to-pink-500 min-h-screen ">
       {/* Map Section */}
       <div className="relative w-full">
         <iframe
@@ -75,10 +75,10 @@ const ContactPage = () => {
       </div>
 
       {/* Form Section */}
-      <div className="mb-10">
+      <div className="pb-10">
         <form
           onSubmit={handleSubmit}
-          className="max-w-2xl mx-auto mt-24 p-6 bg-white rounded-xl shadow-xl border border-white/30 space-y-5"
+          className="max-w-2xl mx-auto mt-24 p-6 bg-white/10 backdrop-blur-md rounded-xl shadow-lg border border-white/20 space-y-5"
         >
           {['name', 'email', 'subject'].map((field) => (
             <div key={field} className="relative w-full">
@@ -106,28 +106,28 @@ const ContactPage = () => {
           ))}
 
           {/* Message Field */}
-          <div className="relative w-full bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg p-4 text-white">
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows={5}
-              className={`peer w-full px-4 pt-6 pb-2 text-base text-black placeholder-white/70 bg-white/10 backdrop-blur-sm border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-pink-400 ${
-                errors.message ? 'border-red-500' : 'border-black/20'
-              }`}
-              placeholder=" "
-            />
-            <label
-              htmlFor="message"
-              className="absolute left-4 top-2 text-sm text-black/70 transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-black/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-pink-400"
-            >
-              Message
-            </label>
-            {errors.message && (
-              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-            )}
-          </div>
+         <div className="relative w-full bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg  text-white/30">
+  <textarea
+    id="message"
+    name="message"
+    value={formData.message}
+    onChange={handleChange}
+    rows={5}
+    className={`peer w-full pt-6 pb-2  text-base text-white/30 placeholder-transparent bg-transparent border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400 focus:text-white ${
+      errors.message ? 'border-red-500' : 'border-white/30'
+    }`}
+    placeholder="Your message"
+  />
+  <label
+    htmlFor="message"
+    className="absolute left-4 top-2 text-sm text-white/30 transition-all duration-200 peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-pink-400 pointer-events-none"
+  >
+    Message
+  </label>
+  {errors.message && (
+    <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+  )}
+</div>
 
           {/* Submit Button */}
           <div className="text-center pt-2">
@@ -141,34 +141,62 @@ const ContactPage = () => {
         </form>
 
         {/* Contact Icons */}
-        <div className="pt-[105px] w-full flex gap-[20px] flex-wrap items-center justify-center">
-          {/* Phone */}
-          <div className="-mt-[35px] w-[70px] h-[70px] rounded-full bg-green-500 flex items-center justify-center transition-all duration-300 group hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer hover:mt-[1px]">
-            <a href="tel:+1234567890" aria-label="Call">
-              📞
-            </a>
-          </div>
+        <div className=" pt-[105px] w-full flex gap-[20px] flex-wrap items-center justify-center">
+        <div className="group relative flex flex-col items-center">
+  {/* Phone Button */}
+  <div className="w-[70px] h-[70px] rounded-full bg-green-500 flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer">
+    <a href="tel:+1234567890" aria-label="Call" className="text-2xl">
+      📞
+    </a>
+  </div>
 
-          {/* Email */}
-          <div className="w-[74px] h-[74px] rounded-full bg-yellow-500 flex items-center justify-center transition-all duration-300 group hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer hover:-mt-[35px]">
-            <a href="mailto:you@example.com" aria-label="Email">
-              ✉️
-            </a>
-          </div>
+  {/* Label on hover */}
+  <p className="mt-2 text-white text-sm opacity-0 group-hover:opacity-100 transition duration-300">
+    Phone
+  </p>
+</div>
 
-          {/* GitHub */}
-          <div className="-mt-[35px] w-[74px] h-[74px] rounded-full bg-gray-800 flex items-center justify-center transition-all duration-300 group hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer hover:mt-[1px]">
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              🐱
-            </a>
-          </div>
 
-          {/* LinkedIn */}
-          <div className="w-[74px] h-[74px] rounded-full bg-blue-400 flex items-center justify-center transition-all duration-300 group hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer hover:-mt-[35px]">
-            <a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              💼
-            </a>
-          </div>
+         <div className="group relative flex flex-col items-center">
+    <div className="w-[74px] h-[74px] rounded-full bg-yellow-500 flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer">
+      <a href="mailto:you@example.com" aria-label="Email" className="text-2xl">
+        ✉️
+      </a>
+    </div>
+    <p className="mt-2 text-white text-sm opacity-0 group-hover:opacity-100 transition duration-300">Email</p>
+  </div>
+
+  {/* GitHub */}
+  <div className="group relative flex flex-col items-center">
+    <div className="w-[74px] h-[74px] rounded-full bg-gray-800 flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer">
+      <a
+        href="https://github.com/yourusername"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        className="text-2xl"
+      >
+        🐱
+      </a>
+    </div>
+    <p className="mt-2 text-white text-sm opacity-0 group-hover:opacity-100 transition duration-300">GitHub</p>
+  </div>
+
+  {/* LinkedIn */}
+  <div className="group relative flex flex-col items-center">
+    <div className="w-[74px] h-[74px] rounded-full bg-blue-500 flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer">
+      <a
+        href="https://www.linkedin.com/in/yourusername"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        className="text-2xl"
+      >
+        💼
+      </a>
+    </div>
+    <p className="mt-2 text-white text-sm opacity-0 group-hover:opacity-100 transition duration-300">LinkedIn</p>
+  </div>
         </div>
       </div>
     </div>
