@@ -132,7 +132,7 @@ const ServicePage = () => {
   className="mb-10"
 >
   <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 mb-15 relative">
-    <h2 className="absolute z-10 -top-5 left-8 text-2xl text-center sm:text-3xl font-semibold text-white mb-4 w-full">
+    <h2 className="absolute z-10 -top-5 left-8 text-2xl sm:text-3xl font-semibold text-white mb-4 w-full">
       Why Choose This Service
     </h2>
 

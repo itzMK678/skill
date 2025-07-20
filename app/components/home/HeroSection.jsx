@@ -10,7 +10,8 @@ const HeroSection = () => {
         <p className="uppercase tracking-widest text-gray-300 text-lg font-semibold mb-4 animate-fade-in">
           Elevate Your Brand with Cutting-Edge Digital Strategies
         </p>
-        <h1 className= "text-5xl md:text-6xl font-extrabold leading-tight text-white transform transition duration-500 ease-in-out hover:scale-105 animate-slide-in-left drop-shadow-[0_0_6px_rgba(255,255,255,0.4)]">
+        <h1 className= "text-5xl md:text-6xl font-extrabold leading-tight text-white transform transition duration-500 ease-in-out hover:scale-105 animate-slide-in-left drop-shadow-[0_0_6px_rgba(255,255,255,0.4)]"
+        >
           Digital Marketing Solutions that Drive Results
         </h1>
         <p className="text-lg md:text-xl text-gray-300 mt-6 animate-fade-in">
