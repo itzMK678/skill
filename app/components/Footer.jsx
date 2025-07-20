@@ -37,8 +37,8 @@ const App = () => {
                  className="p4 my-1 gap:5 flex flex-col group-icon items-center  text-white bg-transparent rounded-md border border-transparent transition-all duration-300 hover:bg-white   hover:text-red-400 ">
  
  
-                    <div className="text-2xl group-icon-hover:text-red-600 ">{social.icon}</div>
-                    <span className="text-xs group-icon-hover:text-red-600 mt-1">{social.label}</span>
+                    <div className="p-3 py-2 text-2xl group-icon-hover:text-red-600 ">{social.icon}</div>
+                    
                   </a>
                 ))}
               </div>
