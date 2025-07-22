@@ -39,7 +39,7 @@ const ServicePage = () => {
   const { title, description, overview, process, benefits, toolsUsed, caseStudy, additionalInfo } = service;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-violet-700 to-pink-500
+    <div className="min-h-screen bg-black
  py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
  
@@ -49,7 +49,7 @@ const ServicePage = () => {
   initial={{ opacity: 0, y: -20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.5 }}
-  className="shadow-sm border border-white/20 space-y-5 bg-white/10 backdrop-blur-lg rounded-lg p-6 mb-10"
+  className="shadow-sm border bg-purple-900/20 space-y-5  border-purple-800 backdrop-blur-lg rounded-lg p-6 mb-10"
 >
   <h1 className="absolute z-10 -top-7 left-8 text-4xl sm:text-5xl font-bold text-white mb-4 drop-shadow">
     {title}
@@ -68,7 +68,9 @@ const ServicePage = () => {
   transition={{ duration: 0.5, delay: 0.2 }}
   className="mb-10"
 >
-  <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 mb-15">
+  <div className="bg-purple-900/20  border-purple-800 backdrop-blur-lg border  rounded-2xl p-6 mb-15"
+   data-aos="fade-down"
+    data-aos-anchor-placement="top-bottom">
     <h2 className="absolute z-10 -top-5 left-8 text-2xl sm:text-3xl font-semibold text-white mb-4">Overview</h2>
     <p className="text-white/90 leading-relaxed ">{overview}</p>
   </div>
@@ -83,7 +85,7 @@ const ServicePage = () => {
   transition={{ duration: 0.5, delay: 0.3 }}
   className="mb-10 "
 >
-  <div className="flex flex-col lg:flex-row gap-6 backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl p-6 mb-15 relative">
+  <div className="flex flex-col lg:flex-row gap-6 backdrop-blur-lg bg-purple-900/20  border-purple-800 border  rounded-2xl p-6 mb-15 relative">
     
     {/* Left Side: How We Do It */}
     <div className="lg:w-1/2 w-full relative z-10">
@@ -96,7 +98,7 @@ const ServicePage = () => {
     {/* Right Side: Tools We Use (Sliding Box) with isolated overflow-hidden */}
     <div className="lg:w-1/2 w-full relative overflow-hidden">
       <div
-        className="absolute top-0 -right-[600px] bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 h-full w-full transition-all duration-500 group-hover:right-0"
+        className="absolute top-0 -right-[600px] bg-purple-900/20  border-purple-800 backdrop-blur-md border  rounded-2xl p-4 h-full w-full transition-all duration-500 group-hover:right-0"
         style={{ minHeight: "100%" }}
       >
         <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4">
@@ -131,18 +133,22 @@ const ServicePage = () => {
   transition={{ duration: 0.5, delay: 0.4 }}
   className="mb-10"
 >
-  <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 mb-15 relative">
+  <div className=" backdrop-blur-lg border bg-purple-900/20  border-purple-800 rounded-2xl p-6 mb-15 relative" 
+  data-aos="fade-down"
+    data-aos-anchor-placement="top-bottom"
+  >
     <h2 className="absolute z-10 -top-5 left-8 text-2xl sm:text-3xl font-semibold text-white mb-4 w-full">
       Why Choose This Service
     </h2>
 
-    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12" >
       {benefits.map((benefit, index) => (
         <li
           key={index}
-          className=" overflow-hidden rounded-lg border border-white/20"
+          className=" overflow-hidden rounded-lg border border-purple-800 "
         >
-          <div className=" flex items-start space-x-3 p-4 bg-white/20 backdrop-blur-md rounded-lg">
+          <div className=" flex items-start space-x-3 p-4 bg-purple-900/20 backdrop-blur-md rounded-lg "
+          >
             <svg
               className="w-6 h-6 text-indigo-400 flex-shrink-0"
               fill="none"
@@ -170,66 +176,76 @@ const ServicePage = () => {
 
         {/* sucess story */}
 
-     <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.4 }}
-      className="relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-lg p-6 sm:p-10 mb-10"
-    >
-      <h1 className="absolute z-10 -top-5 left- text-4xl text-center sm:text-3xl font-semibold text-white mb-4">Success stories</h1>
-      {/* Prev Button (left side) */}
-      <button
-        onClick={prevSlide}
-        className="absolute top-1/2 -translate-y-1/2 -left-5 w-10 h-10 rounded-full bg-white/20 border border-white/30 flex items-center justify-center text-white hover:bg-violet-600 transition-all backdrop-blur-md z-10"
-      >
-        <ChevronLeft className="w-5 h-5" />
-      </button>
+    <motion.section
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.4 }}
+  className="relative bg-purple-900/20 border-purple-800 backdrop-blur-lg border rounded-2xl shadow-lg p-6 sm:p-10 mb-10"
+  data-aos="fade-up"
+  data-aos-anchor-placement="top-bottom"
+>
+  <h1 className="absolute z-10 -top-5 left-1/2 -translate-x-1/2 text-3xl sm:text-4xl font-semibold text-white">
+    Success Stories
+  </h1>
 
-      {/* Next Button (right side) */}
-      <button
-        onClick={nextSlide}
-        className="absolute top-1/2 -translate-y-1/2 -right-5 w-10 h-10 rounded-full bg-white/20 border border-white/30 flex items-center justify-center text-white hover:bg-violet-600 transition-all backdrop-blur-md z-10"
-      >
-        <ChevronRight className="w-5 h-5" />
-      </button>
+  {/* Prev Button */}
+  <button
+    onClick={prevSlide}
+    className="absolute top-1/2 -translate-y-1/2 -left-5 w-10 h-10 rounded-full border bg-purple-900/20 border-purple-800 flex items-center justify-center text-white hover:bg-violet-600 transition-all backdrop-blur-md z-10"
+  >
+    <ChevronLeft className="w-5 h-5" />
+  </button>
 
-      {/* Main Content */}
-      <div className="flex flex-col lg:flex-row items-center gap-8">
-        {/* Left: Story Text */}
-        <div className="lg:w-1/2 w-full text-white">
-          <h2 className="text-2xl sm:text-3xl font-semibold mb-4">{caseStudy.title}</h2>
-          <p className="text-base leading-relaxed">{caseStudy.summary}</p>
-        </div>
+  {/* Next Button */}
+  <button
+    onClick={nextSlide}
+    className="absolute top-1/2 -translate-y-1/2 -right-5 w-10 h-10 rounded-full border bg-purple-900/20 border-purple-800 flex items-center justify-center text-white hover:bg-violet-600 transition-all backdrop-blur-md z-10"
+  >
+    <ChevronRight className="w-5 h-5" />
+  </button>
 
-        {/* Right: Story Image */}
-        <div className="lg:w-1/2 w-full">
-          <div className="rounded-2xl overflow-hidden shadow-lg border border-white/10">
-           <div className="relative w-full h-64 rounded-2xl overflow-hidden shadow-lg border border-white/10">
-  <Image
-    src={caseStudy.image}
-    alt={caseStudy.title}
-    fill
-    className="object-cover"
-    sizes="(max-width: 768px) 100vw, 50vw"
-    priority
-  />
-</div>
-          </div>
-        </div>
+  {/* Content */}
+  <div className="flex flex-col lg:flex-row items-center gap-8">
+    {/* Left: Text */}
+    <div className="lg:w-1/2 w-full text-white">
+      <h2 className="text-2xl sm:text-3xl font-semibold mb-4">{caseStudy.title}</h2>
+      <p className="text-base leading-relaxed">{caseStudy.summary}</p>
+    </div>
+
+    {/* Right: Image */}
+    <div className="lg:w-1/2 w-full">
+      <div className="relative w-full h-64 rounded-2xl overflow-hidden shadow-lg border border-white/10">
+        <Image
+          src={caseStudy.image}
+          alt={caseStudy.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority
+        />
       </div>
-    </motion.section>
+    </div>
+  </div>
+</motion.section>
+
 
     
 
-      {/* Additional Information Section */}
+ {/* Additional Information Section */}
 <motion.section
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.5, delay: 0.8 }}
   className="mb-10"
 >
-  <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6">
-    <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-4">Additional Information</h2>
+  <div
+    className="border bg-purple-900/20 border-purple-800 backdrop-blur-lg rounded-2xl p-6"
+    data-aos="fade-up"
+    data-aos-anchor-placement="top-bottom"
+  >
+    <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-4">
+      Additional Information
+    </h2>
     <div className="space-y-4">
       <div className="flex items-center space-x-3">
         <svg
@@ -239,9 +255,16 @@ const ServicePage = () => {
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c1.66 0 3-1.34 3-3S13.66 2 12 2 9 3.34 9 5s1.34 3 3 3zm0 2c-2.76 0-5 2.24-5 5v4h10v-4c0-2.76-2.24-5-5-5z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 8c1.66 0 3-1.34 3-3S13.66 2 12 2 9 3.34 9 5s1.34 3 3 3zm0 2c-2.76 0-5 2.24-5 5v4h10v-4c0-2.76-2.24-5-5-5z"
+          />
         </svg>
-        <p className="text-white font-medium">Pricing: {additionalInfo.pricing}</p>
+        <p className="text-white font-medium">
+          Pricing: {additionalInfo.pricing}
+        </p>
       </div>
 
       <div className="flex items-center space-x-3">
@@ -252,9 +275,16 @@ const ServicePage = () => {
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 8v4l3 3"
+          />
         </svg>
-        <p className="text-white font-medium">Duration: {additionalInfo.duration}</p>
+        <p className="text-white font-medium">
+          Duration: {additionalInfo.duration}
+        </p>
       </div>
 
       <div className="flex items-center space-x-3">
@@ -265,13 +295,21 @@ const ServicePage = () => {
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+          />
         </svg>
-        <p className="text-white font-medium">Recommended For: {additionalInfo.recommendedFor}</p>
+        <p className="text-white font-medium">
+          Recommended For: {additionalInfo.recommendedFor}
+        </p>
       </div>
     </div>
   </div>
 </motion.section>
+
 
       </div>
     </div>

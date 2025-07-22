@@ -21,7 +21,7 @@ const App = () => {
           <div className="absolute top-full  w-0 group-hover:w-full max-w-[500px] overflow-hidden transition-all duration-1400 ease-in-out00 flex justify-center">
             <div className="bg-black rounded-lg px-6 py-4 flex flex-col items-center  w-fit">
               <p className="text-white text-sm m-t">Connect with us on Social Media</p>
-              <div className="rounded-[22px] px-3 flex gap-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+              <div className="rounded-[22px] px-3 flex gap-6 bg-purple-800">
 
                 {[
                   { icon: <FaFacebookF />, label: "Facebook", link: "https://facebook.com" },
@@ -34,7 +34,7 @@ const App = () => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                 className="p4 my-1 gap:5 flex flex-col group-icon items-center  text-white bg-transparent rounded-md border border-transparent transition-all duration-300 hover:bg-white   hover:text-red-400 ">
+                 className="p4 my-1 gap:5 flex flex-col group-icon items-center  text-white bg-transparent rounded-md border border-transparent transition-all duration-300 hover:bg-white   hover:text-purple-800 ">
  
  
                     <div className="p-3 py-2 text-2xl group-icon-hover:text-red-600 ">{social.icon}</div>

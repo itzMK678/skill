@@ -77,7 +77,7 @@ const services = [
 
 const Service = () => {
   return (
-   <div className="min-h-[600px] bg-gradient-to-b from-pink-900 via-purple-900 to-black py-24">
+   <div className="min-h-[600px] bg-gradient-to-b from-black-900 via-purple-900 to-black py-24">
        <div className="container px-6 mx-auto text-center">
         <h2 className="text-5xl font-extrabold text-white mb-12">Our Services</h2>
         <div className="flex flex-wrap justify-center gap-6">

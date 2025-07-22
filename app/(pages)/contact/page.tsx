@@ -51,7 +51,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className=" bg-gradient-to-b from-black via-blue-700 via-violet-700 to-pink-500 min-h-screen ">
+    <div className=" bg-black min-h-screen ">
       {/* Map Section */}
       <div className="relative w-full">
         <iframe
@@ -78,7 +78,7 @@ const ContactPage = () => {
       <div className="pb-10">
         <form
           onSubmit={handleSubmit}
-          className="max-w-2xl mx-auto mt-24 p-6 bg-white/10 backdrop-blur-md rounded-xl shadow-lg border border-white/20 space-y-5"
+          className="max-w-2xl mx-auto mt-24 p-6 bg-purple-900/20 backdrop-blur-md rounded-xl shadow-lg border  border-purple-800 space-y-5"
         >
           {['name', 'email', 'subject'].map((field) => (
             <div key={field} className="relative w-full">
@@ -88,14 +88,14 @@ const ContactPage = () => {
                 name={field}
                 value={formData[field as keyof typeof formData]}
                 onChange={handleChange}
-                className={`peer w-full px-4 pt-6 pb-2 text-base text-black placeholder-white/70 bg-white/10 backdrop-blur-sm border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-pink-400 ${
-                  errors[field as keyof FormErrors] ? 'border-red-500' : 'border-black/20'
+                className={`peer w-full px-4 pt-6 pb-2  text-base text-white placeholder-white/30 bg-purple-900/20 backdrop-blur-sm border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-purple-400 ${
+                  errors[field as keyof FormErrors] ? 'border-red-500' : ' border-purple-800'
                 }`}
                 placeholder=" "
               />
               <label
                 htmlFor={field}
-                className="absolute left-4 top-2 text-sm text-black/70 transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-black/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-pink-400"
+                className="absolute left-4 top-2 text-sm text-white/30 transition-all peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-black/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-purple-400"
               >
                 {field.charAt(0).toUpperCase() + field.slice(1)}
               </label>
@@ -106,21 +106,24 @@ const ContactPage = () => {
           ))}
 
           {/* Message Field */}
-         <div className="relative w-full bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg  text-white/30">
+         <div className="relative w-full bg-purple-900/20 backdrop-blur-lg border  border-purple-800 rounded-lg  text-white/30">
+  
+  
   <textarea
     id="message"
     name="message"
     value={formData.message}
     onChange={handleChange}
     rows={5}
-    className={`peer w-full pt-6 pb-2  text-base text-white/30 placeholder-transparent bg-transparent border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400 focus:text-white ${
+    className={`peer w-full pt-6 pb-2  text-base text-white/30 placeholder-transparent bg-transparent border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 focus:text-white ${
       errors.message ? 'border-red-500' : 'border-white/30'
     }`}
     placeholder="Your message"
   />
+
   <label
     htmlFor="message"
-    className="absolute left-4 top-2 text-sm text-white/30 transition-all duration-200 peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-pink-400 pointer-events-none"
+    className="absolute left-4 top-2 text-sm text-white/30 transition-all duration-200 peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-purple-400 pointer-events-none"
   >
     Message
   </label>
@@ -129,11 +132,12 @@ const ContactPage = () => {
   )}
 </div>
 
+
           {/* Submit Button */}
           <div className="text-center pt-2">
             <button
               type="submit"
-              className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300"
+              className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300"
             >
               Send Message
             </button>
@@ -144,7 +148,7 @@ const ContactPage = () => {
         <div className=" pt-[105px] w-full flex gap-[20px] flex-wrap items-center justify-center">
         <div className="group relative flex flex-col items-center">
   {/* Phone Button */}
-  <div className="w-[70px] h-[70px] rounded-full bg-green-500 flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer">
+  <div className="w-[70px] h-[70px] rounded-full bg-purple-900/20 border  border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
     <a href="tel:+1234567890" aria-label="Call" className="text-2xl">
       📞
     </a>
@@ -158,7 +162,7 @@ const ContactPage = () => {
 
 
          <div className="group relative flex flex-col items-center">
-    <div className="w-[74px] h-[74px] rounded-full bg-yellow-500 flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer">
+    <div className="w-[74px] h-[74px] rounded-full bg-purple-900/20 border  border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
       <a href="mailto:you@example.com" aria-label="Email" className="text-2xl">
         ✉️
       </a>
@@ -168,7 +172,7 @@ const ContactPage = () => {
 
   {/* GitHub */}
   <div className="group relative flex flex-col items-center">
-    <div className="w-[74px] h-[74px] rounded-full bg-gray-800 flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer">
+    <div className="w-[74px] h-[74px] rounded-full bg-purple-900/20  border border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
       <a
         href="https://github.com/yourusername"
         target="_blank"
@@ -184,7 +188,7 @@ const ContactPage = () => {
 
   {/* LinkedIn */}
   <div className="group relative flex flex-col items-center">
-    <div className="w-[74px] h-[74px] rounded-full bg-blue-500 flex items-center justify-center transition-all duration-300 group-hover:bg-gradient-to-tr from-pink-500 to-purple-600 cursor-pointer">
+    <div className="w-[74px] h-[74px] rounded-full bg-purple-900/20 border border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
       <a
         href="https://www.linkedin.com/in/yourusername"
         target="_blank"
