@@ -55,7 +55,7 @@ const Contact = () => {
     <section className="bg-black py-16 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-semibold text-purple-500">Contact Us</h2>
+          <h2 className="text-6xl font-semibold text-white"style={{ textShadow: '2px 2px #6b21a8' }}>Contact Us</h2>
           <p className="text-white/80 mt-2">We’d love to hear from you. Let's talk!</p>
         </div>
 
@@ -127,6 +127,8 @@ const Contact = () => {
               </div>
             </form>
           </div>
+
+
 
           {/* Contact Info Boxes */}
           <div className="space-y-6">

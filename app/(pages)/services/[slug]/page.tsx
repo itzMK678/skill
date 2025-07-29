@@ -51,9 +51,12 @@ const ServicePage = () => {
   transition={{ duration: 0.5 }}
   className="shadow-sm border bg-purple-900/20 space-y-5  border-purple-800 backdrop-blur-lg rounded-lg p-6 mb-10"
 >
-  <h1 className="absolute z-10 -top-7 left-8 text-4xl sm:text-5xl font-bold text-white mb-4 drop-shadow">
-    {title}
-  </h1>
+ <h1
+  className="absolute z-10 -top-7 left-4 sm:left-8 text-2xl sm:text-4xl md:text-4xl lg:text-5xl lg:-top-8 font-bold text-white mb-4 drop-shadow"
+>
+  {title}
+</h1>
+
   <p className="text-lg sm:text-xl text-white/80 leading-relaxed">
     {description}
   </p>
