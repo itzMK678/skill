@@ -7,7 +7,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "../public/logo.png";
 
 const handleScroll = () => {
-  window.scrollBy({ top: 500, behavior: "smooth" });
+  window.scrollBy({ top: 100, behavior: "smooth" });
 };
 export default function Navbar() {
   const router = useRouter();
