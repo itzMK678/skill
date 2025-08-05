@@ -137,8 +137,8 @@ const Contact = () => {
               <Mail />
               <div>
                 <p className="text-sm font-medium text-white/80">Email</p>
-                <a href="mailto:info@example.com" target="_blank" rel="noopener noreferrer">
-                  <p className="text-base">info@example.com</p>
+                <a href="mailto:info@skillcreatives.com" target="_blank" rel="noopener noreferrer">
+                  <p className="text-base">info@skillcreatives.com</p>
                 </a>
               </div>
             </div>
@@ -148,8 +148,8 @@ const Contact = () => {
               <Phone />
               <div>
                 <p className="text-sm font-medium text-white/80">Phone</p>
-                <a href="tel:+1234567890">
-                  <p className="text-base">+1 234 567 890</p>
+                <a href="tel:+92 3088145270">
+                  <p className="text-base">+92 3088145270</p>
                 </a>
               </div>
             </div>
@@ -159,7 +159,7 @@ const Contact = () => {
               <MapPin />
               <div>
                 <p className="text-sm font-medium text-white/80">Address</p>
-                <p className="text-base">123 Street, City, Country</p>
+                <p className="text-base">Punjab, Pakistan</p>
               </div>
             </div>
           </div>

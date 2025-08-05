@@ -6,6 +6,9 @@ import About from './components/home/About';
 import Service from './components/home/Service';
 import Review from './components/home/Review';
 import Contact from './components/home/Contact';
+import Footer from './components/Footer'
+import Navbar from './components/Navbar'
+import TopNavbar from './components/TopNavBar'
 
 
 const Home = () => {
@@ -25,11 +28,15 @@ const Home = () => {
       {loading ? <Loading /> : null}
       <div>
       {/* <NoiseDemo/> */}
+      <TopNavbar/>
+      <Navbar/>
+      
       <HeroSection/>
       <About/>
       <Service/>
       <Review/>
       <Contact/>
+      <Footer/>
        
       </div>
     </div>

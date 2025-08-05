@@ -1,224 +1,100 @@
-'use client';
+"use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
-import logo from '../public/logo.png';
-import { FaChevronDown } from 'react-icons/fa';
-import { useRouter } from 'next/navigation';
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { Menu, X , ChevronDown } from "lucide-react"; // Hamburger icons
+import logo from "../public/logo.png";
 
-export default function App() {
+export default function Navbar() {
   const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [isOpenLeft, setIsOpenLeft] = useState(false);
-  const [isOpenRight, setIsOpenRight] = useState(false);
-  const [selectedLeft, setSelectedLeft] = useState('Home');
-  const [selectedRight, setSelectedRight] = useState('Skills');
-
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [pagesOpen, setPagesOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-
-  const leftBtnRef = useRef(null);
-  const rightBtnRef = useRef(null);
-
-  const leftOptions = [
-    { name: 'Home', link: '/' },
-    { name: 'About', link: '/about' },
-    { name: 'Contact', link: '/contact' },
-  ];
-
-  const rightOptions = [
-    { name: 'Skills', link: '/' },
-    { name: 'SEO', link: '/services/seo' },
-    { name: 'Pay-Per-Click (PPC)', link: '/services/ppc' },
-    { name: 'Social Media Marketing', link: '/services/social-media-marketing' },
-    { name: 'Web Development', link: '/services/web-development' },
-    { name: 'Shopify Development', link: '/services/shopify-development' },
-    { name: 'Blogging & Content Writing', link: '/services/blogging-content-writing' },
-    { name: 'Conversion Rate Optimization (CRO)', link: '/services/cro' },
-  ];
-
-  const [rightDropdownTop, setRightDropdownTop] = useState(0);
-  const [leftDropdownTop, setLeftDropdownTop] = useState(0);
-
-  useEffect(() => {
-    if (rightBtnRef.current) {
-      setRightDropdownTop(rightBtnRef.current.offsetTop + rightBtnRef.current.offsetHeight);
-    }
-    if (leftBtnRef.current) {
-      setLeftDropdownTop(leftBtnRef.current.offsetTop + leftBtnRef.current.offsetHeight);
-    }
-  }, [isOpenRight, isOpenLeft]);
+  const handleRedirect = (link) => {
+    setIsOpen(false);
+    if (link) router.push(link);
+  };
 
   return (
-    <>
-      {/* Desktop Navbar */}
-      <div className="hidden sm:flex justify-center items-center py-5 bg-black">
-        <div className="relative flex items-center">
-          {/* Left Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setIsOpenLeft(true)}
-            onMouseLeave={() => setIsOpenLeft(false)}
-          >
-            <div
-              ref={leftBtnRef}
-              className="w-[320px] lg:w-[400px] h-[50px] text-white rounded-l-[20px] flex items-center justify-center bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 cursor-pointer hover:from-purple-500 hover:to-purple-700 transition duration-300"
-            >
-              {selectedLeft} <FaChevronDown className="ml-2 text-sm" />
-            </div>
-
-            {isOpenLeft && (
-              <ul
-                className="absolute w-[300px] bg-black text-white rounded-b-[10px] shadow-md z-40"
-                style={{ top: leftDropdownTop }}
-              >
-                {leftOptions.map((item) => (
-                  <li
-                    key={item.name}
-                    className="px-4 py-2 hover:bg-purple-800 cursor-pointer"
-                    onClick={() => {
-                      setSelectedLeft(item.name);
-                      setIsOpenLeft(false);
-                      router.push(item.link);
-                    }}
-                  >
-                    {item.name}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-
-          {/* Center Logo */}
-          <div className="absolute top-[-1px] left-1/2 -translate-x-1/2 z-50">
-            <div className="h-13 flex items-center gap-2 px-4 py-2 rounded-[22px] bg-black shadow-md">
-              <div className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center font-bold">
-                <Image src={logo} alt="Logo" width={24} height={24} />
-              </div>
-              <span className="text-white text-lg font-semibold">Skill Creatives</span>
-            </div>
-          </div>
-
-          {/* Right Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => setIsOpenRight(true)}
-            onMouseLeave={() => setIsOpenRight(false)}
-          >
-            <div
-              ref={rightBtnRef}
-              className="w-[320px] lg:w-[400px] h-[50px] text-white rounded-r-[20px] flex items-center justify-center bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 cursor-pointer hover:from-purple-500 hover:to-purple-700 transition duration-300 gap-2"
-            >
-              <span>{selectedRight}</span>
-              <FaChevronDown className="text-sm" />
-            </div>
-
-            {isOpenRight && (
-              <ul
-                className="absolute w-[300px] bg-black text-white rounded-b-[10px] shadow-md z-40"
-                style={{ top: rightDropdownTop }}
-              >
-                {rightOptions.map((item) => (
-                  <li
-                    key={item.name}
-                    className="px-4 py-2 hover:bg-purple-800 cursor-pointer text-center"
-                    onClick={() => {
-                      setSelectedRight(item.name);
-                      setIsOpenRight(false);
-                      router.push(item.link);
-                    }}
-                  >
-                    {item.name}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Navbar */}
-      <div className="sm:hidden w-full flex justify-between items-center px-4 py-3 bg-black">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center font-bold">
-            <Image src={logo} alt="Logo" width={24} height={24} />
-          </div>
-          <span className="text-white text-lg font-semibold">Skill Creatives</span>
-        </div>
-
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="text-white focus:outline-none"
+    <nav className="font-semibold mt-2 w-full bg-purple-600 backdrop-blur-md text-white px-4 py-3 shadow-md ">
+      <div className="max-w-screen-xl mx-auto flex items-center justify-between flex-wrap gap-4">
+        {/* Logo */}
+        <div
+          className="flex items-center gap-2 cursor-pointer"
+          onClick={() => handleRedirect("/")}
         >
-          <svg
-            className="w-6 h-6 hover:text-purple-800"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-            />
-          </svg>
-        </button>
+          <Image
+            src={logo}
+            alt="Logo"
+            width={40}
+            height={40}
+            className="rounded-full bg-white"
+          />
+          <span className="text-lg font-semibold whitespace-nowrap">
+            SkillCreatives
+          </span>
+        </div>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-6 flex-wrap">
+          <button onClick={() => handleRedirect("/")} className="hover:bg-white hover:text-purple-500 p-2 rounded-md cursor-pointer whitespace-nowrap">Home</button>
+          <button onClick={() => handleRedirect("/about")} className="hover:bg-white hover:text-purple-500 p-2 rounded-md cursor-pointer whitespace-nowrap">About</button>
+          <button onClick={() => handleRedirect("/contact")} className="hover:bg-white hover:text-purple-500 p-2 rounded-md cursor-pointer whitespace-nowrap">Contact</button>
+      
+       <div className="relative">
+  <select
+    defaultValue=""
+    onChange={(e) => handleRedirect(e.target.value)}
+    className="bg-purple-600 cursor-pointer text-white px-3 py-1 pr-8 rounded-md text-sm whitespace-nowrap appearance-none active:ring active:ring-purple-400 "
+  >
+    <option disabled value="">Skills</option>
+    <option className="rounded-md mt-4" value="/services/seo">SEO</option>
+    <option className="rounded-md" value="/services/ppc">Pay Per Click</option>
+    <option className="rounded-md" value="/services/social-media-marketing">Social Media Marketing</option>
+    <option className="rounded-md" value="/services/web-development">Web Development</option>
+    <option className="rounded-md" value="/services/shopify-development">Shopify Development</option>
+    <option className="rounded-md" value="/services/blogging-content-writing">Blogging & Content</option>
+    <option className="rounded-md" value="/services/cro">CRO</option>
+  </select>
+
+  {/* Lucide ChevronDown Icon */}
+  <div className="pointer-events-none absolute right-33 font-bold top-1/2 transform -translate-y-1/2">
+    <ChevronDown className="w-4 h-4 text-white" />
+  </div>
+</div>
+          
+        </div>
+
+        {/* Mobile Menu Icon */}
+        <div className="md:hidden ml-auto">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Dropdown Menus */}
-      {mobileMenuOpen && (
-        <div className="sm:hidden flex flex-col w-full px-4 gap-2 py-3 bg-black">
-          {/* Pages Dropdown */}
-          <div className="w-full">
-            <button
-              onClick={() => setPagesOpen(!pagesOpen)}
-              className="w-full text-white bg-purple-800 px-4 py-3 rounded hover:bg-purple-700 text-left"
-            >
-              Pages
-            </button>
-            {pagesOpen &&
-              leftOptions.map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => {
-                    router.push(item.link);
-                    setMobileMenuOpen(false);
-                  }}
-                  className=" text-white bg-purple-700 px-4 py-2 ml-4 mt-1 rounded hover:bg-purple-600 cursor-pointer"
-                >
-                  {item.name}
-                </div>
-              ))}
-          </div>
-
-          {/* Services Dropdown */}
-          <div className="w-full">
-            <button
-              onClick={() => setServicesOpen(!servicesOpen)}
-              className="w-full text-white bg-purple-800 px-4 py-3  rounded hover:bg-purple-700 text-left "
-            >
-              Services
-            </button>
-            {servicesOpen &&
-              rightOptions.map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => {
-                    router.push(item.link);
-                    setMobileMenuOpen(false);
-                  }}
-                  className="text-white bg-purple-700 px-4 py-2 ml-4 mt-1 srounded hover:bg-purple-600 cursor-pointer"
-                >
-                  {item.name}
-                </div>
-              ))}
-          </div>
+      {/* Mobile Dropdown Menu */}
+      {isOpen && (
+        <div className="md:hidden flex flex-col gap-4 mt-3 px-4">
+          <button onClick={() => handleRedirect("/")}>Home</button>
+          <button onClick={() => handleRedirect("/about")}>About</button>
+          <button onClick={() => handleRedirect("/contact")}>Contact</button>
+          <select
+            defaultValue=""
+            onChange={(e) => handleRedirect(e.target.value)}
+            className=" bg-purple-600 text-white px-3 py-1 rounded-md text-sm text-center"
+          >
+            <option disabled value="">Skills</option>
+            <option value="/services/seo" className="w-[100px]">SEO</option>
+            <option value="/services/ppc">Pay Per Click</option>
+            <option value="/services/social-media-marketing">Social Media Marketing</option>
+            <option value="/services/web-development">Web Development</option>
+            <option value="/services/shopify-development">Shopify Development</option>
+            <option value="/services/blogging-content-writing">Blogging & Content</option>
+            <option value="/services/cro">CRO</option>
+          </select>
         </div>
       )}
-    </>
+    </nav>
   );
 }
-
-  

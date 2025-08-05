@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-
+import React, { useState,useEffect } from 'react';
+import  Loading from "../../components/Loading"
 type FormErrors = {
   name?: string;
   email?: string;
@@ -16,7 +16,14 @@ const ContactPage = () => {
     subject: '',
     message: '',
   });
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+ 
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+  }, []);
   const [errors, setErrors] = useState<FormErrors>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -52,6 +59,7 @@ const ContactPage = () => {
 
   return (
     <div className=" bg-black min-h-screen ">
+       {loading ? <Loading /> : null}
       {/* Map Section */}
       <div className="relative w-full">
         <iframe
@@ -149,7 +157,7 @@ const ContactPage = () => {
         <div className="group relative flex flex-col items-center">
   {/* Phone Button */}
   <div className="w-[70px] h-[70px] rounded-full bg-purple-900/20 border  border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
-    <a href="tel:+1234567890" aria-label="Call" className="text-2xl">
+    <a href="tel:+92 3088145270" aria-label="Call" className="text-2xl">
       📞
     </a>
   </div>
@@ -163,7 +171,7 @@ const ContactPage = () => {
 
          <div className="group relative flex flex-col items-center">
     <div className="w-[74px] h-[74px] rounded-full bg-purple-900/20 border  border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
-      <a href="mailto:you@example.com" aria-label="Email" className="text-2xl">
+      <a href="mailto:info@skillcreatives.com" aria-label="Email" className="text-2xl">
         ✉️
       </a>
     </div>
@@ -190,7 +198,7 @@ const ContactPage = () => {
   <div className="group relative flex flex-col items-center">
     <div className="w-[74px] h-[74px] rounded-full bg-purple-900/20 border border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
       <a
-        href="https://www.linkedin.com/in/yourusername"
+        href="https://www.linkedin.com/company/skill-creatives/"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"

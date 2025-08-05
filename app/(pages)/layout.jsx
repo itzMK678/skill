@@ -1,9 +1,6 @@
-
-import { LoadingProvider } from "../app/components/loading-context"; 
-
-import AosInit from "./components/AosInit";
-
-import "./globals.css";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import TopNavBar from "../components/TopNavBar";
 
 export const metadata = {
   title: "Best Digital Marketing Agency in Pakistan | SEO & Website Development",
@@ -28,16 +25,15 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function PagesLayout({ children }) {
   return (
     <html lang="en">
       <body className="font-outfit bg-black text-white">
-        <LoadingProvider> {/* 👈 Wrap the entire app */}
-          <AosInit />
-      
+        <TopNavBar/>
+       <Navbar/>
           {children}
+          <Footer/>
        
-        </LoadingProvider>
       </body>
     </html>
   );

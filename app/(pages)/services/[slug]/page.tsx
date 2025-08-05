@@ -1,6 +1,6 @@
 'use client';
 import { useParams } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import services from './servicesData'; // Adjust the import path
 import stories from './servicesData';
 import { motion } from 'framer-motion'; // For animations
@@ -8,7 +8,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react'; // For icons
 import { ChevronLeft, ChevronRight } from "lucide-react"; 
 import img from "../../../public/herobg.jpeg"
 import Image from 'next/image';
-
+import Loading from '../../../components/Loading';
 
 
 const ServicePage = () => {
@@ -16,7 +16,14 @@ const ServicePage = () => {
   const service = services.find((s) => s.slug === slug);
   const [currentIndex, setCurrentIndex] = useState(0);
   const current = stories[currentIndex];
+ const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+ 
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+  }, []); 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % stories.length);
   };
@@ -41,6 +48,7 @@ const ServicePage = () => {
   return (
     <div className="min-h-screen bg-black
  py-16 px-4 sm:px-6 lg:px-8">
+   {loading ? <Loading /> : null}
       <div className="max-w-5xl mx-auto">
  
 

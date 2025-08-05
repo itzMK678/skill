@@ -101,8 +101,51 @@ import client3 from "../../../public/client3.jpeg"
       },
     },
     {
+  id: 7,
+  slug: 'blogging-content-writing',
+  title: 'Blogging & Content Writing',
+  description:
+    'Engage your audience and boost SEO with high-quality, tailored content that drives traffic and builds brand authority.',
+  overview:
+    'Our Blogging & Content Writing services deliver compelling, SEO-optimized content designed to attract and retain your target audience. From blog posts to whitepapers, we craft content that aligns with your brand voice and business goals, enhancing your online presence and driving organic traffic.',
+  process:
+    'We start by researching your industry, audience, and competitors to develop a content strategy. Our team creates a content calendar, produces high-quality articles, blogs, and other assets, and optimizes them for SEO. We incorporate visuals, internal linking, and CTAs to maximize engagement. Performance is tracked using analytics tools, with regular reports to refine the strategy.',
+  benefits: [
+    'Increased organic traffic through SEO-optimized content',
+    'Enhanced brand authority and trust',
+    'Improved audience engagement and loyalty',
+    'Versatile content for multiple platforms',
+  ],
+  toolsUsed: [
+    { name: 'Grammarly' },
+    { name: 'Yoast SEO' },
+    { name: 'Google Docs' },
+    { name: 'SEMrush' },
+    { name: 'Canva' },
+    { name: 'Google Analytics' },
+  ],
+  caseStudy: {
+    title: 'Tech Blog Content Strategy',
+    image: client1,
+    summary: 'We developed a blog strategy for a tech company, increasing monthly blog traffic by 55% and lead generation by 20% in 4 months.',
+  },
+  additionalInfo: {
+    pricing: '$800 - $2500/month',
+    duration: '2 - 4 months for initial strategy, ongoing for content production',
+    recommendedFor: 'Businesses aiming to boost SEO, startups building thought leadership, eCommerce brands needing product descriptions.',
+    features: [
+      'Keyword-driven content strategy',
+      'High-quality blog posts, articles, and whitepapers',
+      'SEO optimization for higher search rankings',
+      'Content calendar planning and execution',
+      'Visual content creation (infographics, images)',
+      'Performance tracking and iterative improvements',
+    ],
+  },
+},
+    {
       id: 3,
-      slug: 'smm',
+      slug: 'social-media-marketing',
       title: 'Social Media Marketing (SMM)',
       description: 
         'Amplify your brand’s voice and foster meaningful engagement with your audience on platforms like Instagram, LinkedIn, and TikTok.',

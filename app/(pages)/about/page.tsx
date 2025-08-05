@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Code, Palette, Smartphone, Search, Globe, Zap, Heart, Target, Lightbulb, Shield, Rocket, Users } from 'lucide-react';
 import Image from 'next/image';
 import projectImage1 from '../../public/web1.webp';
 import projectImage2 from '../../public/web2.webp';
+import Loading from '../../components/Loading';
 
 const services = [
   { icon: Code, title: 'Web Development', desc: 'Custom websites & apps' },
@@ -23,8 +24,18 @@ const values = [
 ];
 
 export default function ServicesPage() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
   return (
     <main className="bg-black text-white min-h-screen">
+      {loading ? <Loading /> : null}
+
       {/* Intro */}
       <section className="relative text-center py-24 px-6">
         <h1 className="text-white font-black text-5xl md:text-7xl tracking-tight" style={{ textShadow: '2px 2px #6b21a8' }}>
@@ -53,7 +64,6 @@ export default function ServicesPage() {
 
       {/* Mission + Values */}
       <section className="bg-black py-20 px-6 space-y-20">
-        {/* Mission */}
         <div className="max-w-5xl mx-auto text-center space-y-8">
           <Target className="w-16 h-16 text-purple-400 mx-auto" />
           <h2 className="text-3xl font-bold">Our Mission</h2>
@@ -91,7 +101,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Case Studies (Optional) */}
+      {/* Case Studies */}
       <section className="py-20 px-6 bg-gradient-to-b from-black to-purple-950">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-10">Our Work</h2>

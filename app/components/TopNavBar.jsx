@@ -20,8 +20,8 @@ const TopNavBar = () => {
         });
     }, []);
 return (
-    <div className='bg-purple-400 py-4 flex justify-center items-center'>
-        <h2  id='h3text' className=''>🚀 Best Digital Marketing Agency in Pakistan | SEO, Web & Shopify Experts!</h2>
+    <div className='bg-purple-500  flex justify-center items-center'>
+        <h2  id='h3text' className=''><marquee>Best Digital Marketing Agency in Pakistan | SEO, Web & Shopify Experts!</marquee></h2>
     </div>
 )
 }
