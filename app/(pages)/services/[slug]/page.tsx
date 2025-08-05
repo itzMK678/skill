@@ -3,8 +3,8 @@ import { useParams } from 'next/navigation';
 import React, { useState,useEffect } from 'react';
 import services from './servicesData'; // Adjust the import path
 import stories from './servicesData';
-import { motion } from 'framer-motion'; // For animations
-import { ChevronDown, ChevronUp } from 'lucide-react'; // For icons
+import { motion } from 'framer-motion'; 
+import { ChevronDown, ChevronUp } from 'lucide-react'; 
 import { ChevronLeft, ChevronRight } from "lucide-react"; 
 import img from "../../../public/herobg.jpeg"
 import Image from 'next/image';

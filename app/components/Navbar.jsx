@@ -29,9 +29,9 @@ export default function Navbar() {
           <Image
             src={logo}
             alt="Logo"
-            width={32}
-            height={32}
-            className="rounded-full bg-white"
+            width={42}
+            height={42}
+            className="rounded-full "
           />
           <span className="text-lg font-semibold">Skill Creatives</span>
         </div>
@@ -46,7 +46,7 @@ export default function Navbar() {
             <button className="flex items-center gap-1 hover:text-purple-400 transition">
               Services <ChevronDown className="w-4 h-4" />
             </button>
-            <div className="absolute top-full left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-50">
+            <div className="absolute top-full left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-500">
               <ul className="py-2 text-sm">
                 {[
                   { label: "SEO", href: "/services/seo" },
