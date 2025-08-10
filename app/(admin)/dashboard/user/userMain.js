@@ -1,16 +1,51 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import logo from "../../../public/logo.png"
+import { getDatabase, ref, update } from "firebase/database";
+import { db } from "../../../lib/firebase";
 
-export default function User() {
+
+
+export default function Password() {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("@Email");
 
-  const handleChangePassword = () => {
-    console.log("Old Password:", oldPassword);
-    console.log("New Password:", newPassword);
+  const handleChangePassword = async () => {
+    setError(null);
+    if (newPassword.length < 6) {
+      setError("New password must be at least 6 characters long.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+   
+
+     
+      const userId = "ksaladjpoasdjpoeijwqemdpowejdpoq";
+      const userRef = ref(db, `users/${userId}`);
+      await update(userRef, {
+        password: newPassword, // Update password field
+        updatedAt: new Date().toISOString(), 
+      });
+
+
+
+      setOldPassword("");
+      setNewPassword("");
+      alert("Password updated successfully in Realtime Database!");
+    } catch (error) {
+      console.error("Error updating password: ", error);
+      setError(error.message || "Failed to update password");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -19,20 +54,19 @@ export default function User() {
         <h2 className="text-3xl font-bold text-center text-purple-400 mb-6">
           Change Password
         </h2>
-
-        {/* Avatar */}
         <div className="flex flex-col items-center mb-8">
-          <div
-            className="w-20 h-20 bg-cover bg-center rounded-full mb-3 border-4 border-purple-500"
-            style={{ backgroundImage: "url('https://i.pravatar.cc/150?img=4')" }}
-          ></div>
-          <h3 className="text-xl font-semibold text-purple-200">@Email</h3>
+         <div
+  className="w-20 h-20 bg-cover bg-center rounded-full mb-3 border-4 border-purple-500"
+  style={{ backgroundImage: `url(${logo.src})` }}
+></div>
+          
         </div>
-
-        {/* Input Fields */}
         <div className="space-y-5">
           <div>
-            <label htmlFor="old-password" className="block text-sm mb-1 text-purple-300">
+            <label
+              htmlFor="old-password"
+              className="block text-sm mb-1 text-purple-300"
+            >
               Old Password
             </label>
             <div className="relative">
@@ -53,9 +87,11 @@ export default function User() {
               </button>
             </div>
           </div>
-
           <div>
-            <label htmlFor="new-password" className="block text-sm mb-1 text-purple-300">
+            <label
+              htmlFor="new-password"
+              className="block text-sm mb-1 text-purple-300"
+            >
               New Password
             </label>
             <div className="relative">
@@ -76,12 +112,13 @@ export default function User() {
               </button>
             </div>
           </div>
-
+          {error && <p className="text-red-400 text-sm">{error}</p>}
           <button
             onClick={handleChangePassword}
-            className="w-full py-2 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            disabled={loading}
+            className="w-full py-2 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
           >
-            Update Password
+            {loading ? "Updating..." : "Update Password"}
           </button>
         </div>
       </div>

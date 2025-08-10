@@ -19,7 +19,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full bg-black bg-opacity-80 text-white px-6 py-4 backdrop-blur-md shadow-sm border-b border-white/10">
+    <nav className="w-full bg-black bg-opacity-80 text-white px-6 py-4 backdrop-blur-md shadow-sm border-b border-white/10 relative z-[9999]">
+
       <div className="max-w-screen-xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div
@@ -40,13 +41,16 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8 text-sm">
           <button onClick={() => handleRedirect("/")} className="hover:text-purple-400 transition">Home</button>
           <button onClick={() => handleRedirect("/about")} className="hover:text-purple-400 transition">About</button>
+            <button onClick={() => handleRedirect("/blog")} className="hover:text-purple-400 transition">Blog</button>
 
           {/* Services Dropdown */}
-          <div className="relative group">
+          <div className="relative group z-[9999]">
+
             <button className="flex items-center gap-1 hover:text-purple-400 transition">
               Services <ChevronDown className="w-4 h-4" />
             </button>
-            <div className="absolute top-full left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-500">
+            <div className="absolute top-full left-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-[9999]">
+
               <ul className="py-2 text-sm">
                 {[
                   { label: "SEO", href: "/services/seo" },

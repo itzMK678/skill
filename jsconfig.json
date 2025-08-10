@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "jsx": "react",
+    "baseUrl": ".",               // Required for path aliases
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": ["app/*"]
+    },
+    "jsx": "preserve",            // Best for Next.js
+    "module": "esnext",           // Optional but good for modern JS
+    "moduleResolution": "node"   // Ensure modules resolve correctly
   }
 }

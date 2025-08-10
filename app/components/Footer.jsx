@@ -124,11 +124,14 @@ const Footer = () => {
       </div>
 
       {/* Bottom Copyright */}
-      <div className="py-4 text-center text-xs text-gray-400 border-t border-gray-700">
-        <a href="https://mamoon-dev.vercel.app/">
+  <a href="https://mamoon-dev.vercel.app/">      <div className="py-4 overflow-hidden relative  text-center text-xs text-gray-400 border-t border-gray-700">
+     <div className='absolute z-10 top-3 right-15 group-hover:top-8 transition-all duration-500 ease-in-out xs:right-35 xm:right-45 md:right-70 lg:right-100 xl:right-140'>
           &copy; 2025 Skill Creatives. All rights reserved.
-        </a>
-      </div>
+       </div>
+       <div className='absolute z-10 top-8 right-150 group-hover:top-3 transition-all duration-500 ease-in-out  xs:right-35 xm:right-45 md:right-70 lg:right-100 xl:right-140 '>
+         Developed by MamoonKhaliq
+       </div>
+      </div></a>
     </footer>
   );
 };

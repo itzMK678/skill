@@ -14,7 +14,8 @@ import Image from "next/image";
 import logo from "../../public/logo.png";
 import ContactPage from "../dashboard/contact/page";
 import MainBlog from "../dashboard/blogs/MainBlog";
-import User from "../dashboard/user/page";
+import User from "./user/userMain";
+
 
 const Dashboard = () => {
   const [active, setActive] = useState(1);
@@ -59,7 +60,6 @@ const Dashboard = () => {
               height={180}
               className="rounded-full"
             />
-            {/* <span className="text-xl font-semibold text-purple-400">SkillsCreative</span> */}
           </div>
 
           {/* Navigation */}
@@ -81,7 +81,7 @@ const Dashboard = () => {
         </aside>
 
         {/* Content Area */}
-        <main className="flex-1 mt-2 ml-2 items-center ">{content}</main>
+        <main className="flex-1 mt-2 ml-2 items-center">{content}</main>
       </div>
     </div>
   );

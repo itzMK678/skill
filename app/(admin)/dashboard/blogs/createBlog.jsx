@@ -1,14 +1,80 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { ref, set } from "firebase/database";
+import { v4 as uuidv4 } from "uuid";
+import slugify from "slugify";
+import JoditEditor from "jodit-react";
+import { db } from "../../../lib/firebase";
 
 export default function CreateBlog() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const editor = useRef(null); // Reference for Jodit editor
 
-  const handleUpload = () => {
-    console.log("Title:", title);
-    console.log("Description:", description);
-    // Add actual upload logic here
+  const handleUpload = async () => {
+    console.log("Database reference:", db); // Debug Firebase db
+    if (!title || !description) {
+      alert("Please fill in both title and description");
+      return;
+    }
+
+    try {
+      const blogId = uuidv4();
+      const slug = slugify(title, {
+        lower: true,
+        strict: true,
+        remove: /[*+~.()'"!:@]/g,
+      });
+
+      const blogRef = ref(db, `blogs/${blogId}`);
+
+      await set(blogRef, {
+        id: blogId,
+        title: title,
+        description: description,
+        slug: slug,
+        createdAt: new Date().toISOString(),
+      });
+
+      setTitle("");
+      setDescription("");
+      alert("Blog post created successfully!");
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      alert("Failed to create blog post");
+    }
+  };
+
+  // Jodit editor configuration
+  const config = {
+    readonly: false,
+    placeholder: "Enter description",
+    height: 400,
+    style: {
+      backgroundColor: "#1F2937", // Match your dark theme
+      color: "#D8B4FE", // Purple text
+    },
+    buttons: [
+      "bold",
+      "italic",
+      "underline",
+      "|",
+      "ul",
+      "ol",
+      "|",
+      "font",
+      "fontsize",
+      "brush",
+      "paragraph",
+      "|",
+      "image",
+      "video",
+      "table",
+      "link",
+      "|",
+      "undo",
+      "redo",
+    ],
   };
 
   return (
@@ -33,18 +99,18 @@ export default function CreateBlog() {
             />
           </div>
 
-          {/* Description Input */}
+          {/* Jodit Editor for Description */}
           <div>
             <label className="block text-sm font-medium text-purple-300 mb-1">
               Description
             </label>
-            <textarea
+            <JoditEditor
+              ref={editor}
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Enter description"
-              rows={4}
-              className="w-full px-4 py-2 border border-purple-600 bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 text-purple-100"
-            ></textarea>
+              config={config}
+              onBlur={(newContent) => setDescription(newContent)} // Update on blur
+              onChange={(newContent) => {}} // Optional: Handle live changes if needed
+            />
           </div>
 
           {/* Upload Button */}

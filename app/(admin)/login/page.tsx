@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { ref, query, orderByChild, equalTo, get } from 'firebase/database';
-import { db } from '../../Database/Firebase'
+import { db } from '../../lib/firebase'
 import { useCookies } from 'next-client-cookies';
 import { useRouter } from 'next/navigation';
 
@@ -9,40 +9,41 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const cookies=useCookies();
-  const route=useRouter()
+  const cookies = useCookies();
+  const router = useRouter();
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    const newpassword = parseInt(password);
+
     try {
       const usersRef = query(ref(db, 'users'), orderByChild('email'), equalTo(email));
       const snapshot = await get(usersRef);
 
       if (snapshot.exists()) {
-      const userData = Object.values(snapshot.val())[0] as { password: number; isActive: boolean; email: string };
+        const userData = Object.values(snapshot.val())[0] as { password: string; isActive: boolean; email: string };
 
-      if (userData.password === newpassword) {
-        if (userData.isActive) {
-            cookies.set("token","lksadjlkasdjlaksdnakldnkladioandlasdaokxaksdnalsdjosdkasldmnaslkdjoaidnniaomsdmandiowqmdomdasnd")
-            route.push('/dashboard')
-          alert('Login successful!');
-          // Redirect or handle successful login
+        // Compare password as string (remove parseInt)
+        if (userData.password === password) {
+          if (userData.isActive) {
+            // Set cookie with key 'auth_token' to match middleware
+            cookies.set('token', 'lksadjlkasdjlaksdnakldnkladioandlasdaokxaksdnalsdjosdkasldmnaslkdjoaidnniaomsdmandiowqmdomdasnd');
+            router.push('/dashboard');
+            alert('Login successful!');
+          } else {
+            setError('Account is not active');
+          }
         } else {
-          setError('Account is not active');
+          setError('Invalid email or password');
         }
       } else {
         setError('Invalid email or password');
       }
-      } else {
-        setError('Invalid email or password');
-      }
     } catch (err) {
-      console.log(err);
+      console.error(err);
       setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);

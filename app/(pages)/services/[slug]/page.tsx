@@ -3,7 +3,7 @@ import { useParams } from 'next/navigation';
 import React, { useState,useEffect } from 'react';
 import services from './servicesData'; // Adjust the import path
 import stories from './servicesData';
-import { motion } from 'framer-motion'; 
+import { motion } from 'framer-motion'; // For animations
 import { ChevronDown, ChevronUp } from 'lucide-react'; 
 import { ChevronLeft, ChevronRight } from "lucide-react"; 
 import img from "../../../public/herobg.jpeg"
@@ -60,7 +60,7 @@ const ServicePage = () => {
   className="shadow-sm border bg-purple-900/20 space-y-5  border-purple-800 backdrop-blur-lg rounded-lg p-6 mb-10"
 >
  <h1
-  className="absolute z-10 -top-7 left-4 sm:left-8 text-2xl sm:text-4xl md:text-4xl lg:text-5xl lg:-top-8 font-bold text-white mb-4 drop-shadow"
+  className=" sm:left-8 text-2xl sm:text-4xl md:text-4xl lg:text-5xl lg:-top-8 font-bold text-white mb-4 drop-shadow"
 >
   {title}
 </h1>

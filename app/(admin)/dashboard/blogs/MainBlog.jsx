@@ -18,7 +18,7 @@ const MainBlog = () => {
   return (
     <div className="min-h-screen bg-black text-purple-100">
       {/* Top Navigation */}
-      <div className="flex gap-6 h-[50px] bg-black-900 justify-center items-center font-semibold  shadow">
+      <div className="flex gap-6 h-[50px] bg-black-900 justify-center items-center font-semibold shadow">
         {menu.map((item) => (
           <div
             key={item.tab}
@@ -34,7 +34,7 @@ const MainBlog = () => {
         ))}
       </div>
 
-      
+      {/* Dynamic Content */}
       <div className="p-6">{content}</div>
     </div>
   );

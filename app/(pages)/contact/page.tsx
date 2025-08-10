@@ -1,7 +1,10 @@
 'use client';
 
-import React, { useState,useEffect } from 'react';
-import  Loading from "../../components/Loading"
+import React, { useState, useEffect } from 'react';
+import Loading from '../../components/Loading';
+import { ref, push } from 'firebase/database';
+import { db } from '../../lib/firebase';
+
 type FormErrors = {
   name?: string;
   email?: string;
@@ -17,14 +20,14 @@ const ContactPage = () => {
     message: '',
   });
   const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [submitStatus, setSubmitStatus] = useState<string | null>(null);
 
   useEffect(() => {
- 
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, []);
-  const [errors, setErrors] = useState<FormErrors>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -38,7 +41,7 @@ const ContactPage = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newErrors: FormErrors = {};
@@ -51,15 +54,28 @@ const ContactPage = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log('Sending form data:', formData);
-      // Optionally reset form
-      // setFormData({ name: '', email: '', subject: '', message: '' });
+      try {
+        // Reference to the 'contacts' node in Firebase Realtime Database
+        const contactsRef = ref(db, 'contacts');
+        // Push form data to Firebase
+        await push(contactsRef, {
+          ...formData,
+          timestamp: new Date().toISOString(),
+        });
+
+        setSubmitStatus('Message sent successfully!');
+        // Reset form
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } catch (error) {
+        console.error('Error sending form data:', error);
+        setSubmitStatus('Failed to send message. Please try again.');
+      }
     }
   };
 
   return (
-    <div className=" bg-black min-h-screen ">
-       {loading ? <Loading /> : null}
+    <div className="bg-black min-h-screen">
+      {loading ? <Loading /> : null}
       {/* Map Section */}
       <div className="relative w-full">
         <iframe
@@ -86,7 +102,7 @@ const ContactPage = () => {
       <div className="pb-10">
         <form
           onSubmit={handleSubmit}
-          className="max-w-2xl mx-auto mt-24 p-6 bg-purple-900/20 backdrop-blur-md rounded-xl shadow-lg border  border-purple-800 space-y-5"
+          className="max-w-2xl mx-auto mt-24 p-6 bg-purple-900/20 backdrop-blur-md rounded-xl shadow-lg border border-purple-800 space-y-5"
         >
           {['name', 'email', 'subject'].map((field) => (
             <div key={field} className="relative w-full">
@@ -96,8 +112,8 @@ const ContactPage = () => {
                 name={field}
                 value={formData[field as keyof typeof formData]}
                 onChange={handleChange}
-                className={`peer w-full px-4 pt-6 pb-2  text-base text-white placeholder-white/30 bg-purple-900/20 backdrop-blur-sm border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-purple-400 ${
-                  errors[field as keyof FormErrors] ? 'border-red-500' : ' border-purple-800'
+                className={`peer w-full px-4 pt-6 pb-2 text-base text-white placeholder-white/30 bg-purple-900/20 backdrop-blur-sm border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-purple-400 ${
+                  errors[field as keyof FormErrors] ? 'border-red-500' : 'border-purple-800'
                 }`}
                 placeholder=" "
               />
@@ -114,32 +130,35 @@ const ContactPage = () => {
           ))}
 
           {/* Message Field */}
-         <div className="relative w-full bg-purple-900/20 backdrop-blur-lg border  border-purple-800 rounded-lg  text-white/30">
-  
-  
-  <textarea
-    id="message"
-    name="message"
-    value={formData.message}
-    onChange={handleChange}
-    rows={5}
-    className={`peer w-full pt-6 pb-2  text-base text-white/30 placeholder-transparent bg-transparent border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 focus:text-white ${
-      errors.message ? 'border-red-500' : 'border-white/30'
-    }`}
-    placeholder="Your message"
-  />
+          <div className="relative w-full bg-purple-900/20 backdrop-blur-lg border border-purple-800 rounded-lg text-white/30">
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows={5}
+              className={`peer w-full pt-6 pb-2 text-base text-white/30 placeholder-transparent bg-transparent border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 focus:text-white ${
+                errors.message ? 'border-red-500' : 'border-white/30'
+              }`}
+              placeholder="Your message"
+            />
+            <label
+              htmlFor="message"
+              className="absolute left-4 top-2 text-sm text-white/30 transition-all duration-200 peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-purple-400 pointer-events-none"
+            >
+              Message
+            </label>
+            {errors.message && (
+              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+            )}
+          </div>
 
-  <label
-    htmlFor="message"
-    className="absolute left-4 top-2 text-sm text-white/30 transition-all duration-200 peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-purple-400 pointer-events-none"
-  >
-    Message
-  </label>
-  {errors.message && (
-    <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-  )}
-</div>
-
+          {/* Submit Status */}
+          {submitStatus && (
+            <p className={`text-center text-sm ${submitStatus.includes('successfully') ? 'text-green-500' : 'text-red-500'}`}>
+              {submitStatus}
+            </p>
+          )}
 
           {/* Submit Button */}
           <div className="text-center pt-2">
@@ -152,64 +171,7 @@ const ContactPage = () => {
           </div>
         </form>
 
-        {/* Contact Icons */}
-        <div className=" pt-[105px] w-full flex gap-[20px] flex-wrap items-center justify-center">
-        <div className="group relative flex flex-col items-center">
-  {/* Phone Button */}
-  <div className="w-[70px] h-[70px] rounded-full bg-purple-900/20 border  border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
-    <a href="tel:+92 3088145270" aria-label="Call" className="text-2xl">
-      📞
-    </a>
-  </div>
-
-  {/* Label on hover */}
-  <p className="mt-2 text-white text-sm opacity-0 group-hover:opacity-100 transition duration-300">
-    Phone
-  </p>
-</div>
-
-
-         <div className="group relative flex flex-col items-center">
-    <div className="w-[74px] h-[74px] rounded-full bg-purple-900/20 border  border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
-      <a href="mailto:info@skillcreatives.com" aria-label="Email" className="text-2xl">
-        ✉️
-      </a>
-    </div>
-    <p className="mt-2 text-white text-sm opacity-0 group-hover:opacity-100 transition duration-300">Email</p>
-  </div>
-
-  {/* GitHub */}
-  <div className="group relative flex flex-col items-center">
-    <div className="w-[74px] h-[74px] rounded-full bg-purple-900/20  border border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
-      <a
-        href="https://github.com/yourusername"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        className="text-2xl"
-      >
-        🐱
-      </a>
-    </div>
-    <p className="mt-2 text-white text-sm opacity-0 group-hover:opacity-100 transition duration-300">GitHub</p>
-  </div>
-
-  {/* LinkedIn */}
-  <div className="group relative flex flex-col items-center">
-    <div className="w-[74px] h-[74px] rounded-full bg-purple-900/20 border border-purple-800 flex items-center justify-center transition-all duration-300 group-hover:bg-purple-600 cursor-pointer">
-      <a
-        href="https://www.linkedin.com/company/skill-creatives/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        className="text-2xl"
-      >
-        💼
-      </a>
-    </div>
-    <p className="mt-2 text-white text-sm opacity-0 group-hover:opacity-100 transition duration-300">LinkedIn</p>
-  </div>
-        </div>
+    
       </div>
     </div>
   );
