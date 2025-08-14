@@ -3,9 +3,11 @@ import { useState, useRef } from "react";
 import { ref, set } from "firebase/database";
 import { v4 as uuidv4 } from "uuid";
 import slugify from "slugify";
-import JoditEditor from "jodit-react";
-import { db } from "../../../lib/firebase";
 
+
+import { db } from "../../../lib/firebase";
+import dynamic from "next/dynamic";
+const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 export default function CreateBlog() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

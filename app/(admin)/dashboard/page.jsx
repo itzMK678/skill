@@ -64,7 +64,7 @@ const Dashboard = () => {
 
           {/* Navigation */}
           <nav className="space-y-3">
-            {menu.map((item) => (
+            {menu?.map((item) => (
               <button
                 key={item.tab}
                 onClick={() => setActive(item.tab)}

@@ -2,8 +2,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ref, onValue, set, remove } from "firebase/database";
 import DOMPurify from "dompurify";
-import JoditEditor from "jodit-react";
+
 import { db } from "../../../lib/firebase";
+import dynamic from "next/dynamic";
+const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
 export default function ViewBlog() {
   const [blogs, setBlogs] = useState([]);
