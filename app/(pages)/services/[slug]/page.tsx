@@ -195,14 +195,15 @@ const ServicePage = () => {
   data-aos="fade-up"
   data-aos-anchor-placement="top-bottom"
 >
-  <h1 className="absolute z-10 -top-5 left-1/2 -translate-x-1/2 text-3xl sm:text-4xl font-semibold text-white">
-    Success Stories
-  </h1>
+ <h1 className="absolute z-10 -top-5 left-8 text-xl sm:text-3xl font-semibold text-white mb-4 ">
+  Success Stories
+</h1>
+
 
   {/* Prev Button */}
   <button
     onClick={prevSlide}
-    className="absolute top-1/2 -translate-y-1/2 -left-5 w-10 h-10 rounded-full border bg-purple-900/20 border-purple-800 flex items-center justify-center text-white hover:bg-violet-600 transition-all backdrop-blur-md z-10"
+    className="absolute top-1/2 -translate-y-1/2 -left-5  w-10 h-10 rounded-full border bg-purple-900/20 border-purple-800 flex items-center justify-center text-white hover:bg-violet-600 transition-all backdrop-blur-md z-10"
   >
     <ChevronLeft className="w-5 h-5" />
   </button>
