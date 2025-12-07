@@ -1,7 +1,7 @@
 'use client';
 import { useParams } from 'next/navigation';
 import React, { useState,useEffect } from 'react';
-import services from './servicesData'; // Adjust the import path
+import services from './servicesData'; 
 import stories from './servicesData';
 import { motion } from 'framer-motion'; // For animations
 import { ChevronDown, ChevronUp } from 'lucide-react'; 

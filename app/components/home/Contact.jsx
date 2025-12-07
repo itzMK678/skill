@@ -77,7 +77,7 @@ const Contact = () => {
                     className={`peer w-full px-4 pt-6 pb-2 text-base text-white placeholder-white/30 bg-purple-900/20 backdrop-blur-sm border rounded-md appearance-none focus:outline-none focus:ring-2 focus:ring-purple-400 ${
                       errors[field] ? "border-red-500" : "border-purple-800"
                     }`}
-                    placeholder=" "
+                    placeholder=""
                   />
                   <label
                     htmlFor={field}
@@ -91,29 +91,34 @@ const Contact = () => {
                 </div>
               ))}
 
-              {/* Message Field */}
-              <div className="relative w-full bg-purple-900/20 backdrop-blur-lg border border-purple-800 rounded-lg text-white/30">
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={5}
-                  className={`peer w-full pt-6 pb-2 text-base text-white/30 placeholder-transparent bg-transparent border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 focus:text-white ${
-                    errors.message ? "border-red-500" : "border-white/30"
-                  }`}
-                  placeholder="Your message"
-                />
-                <label
-                  htmlFor="message"
-                  className="absolute left-4 top-2 text-sm text-white/30 transition-all duration-200 peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-sm peer-focus:text-purple-400 pointer-events-none"
-                >
-                  Message
-                </label>
-                {errors.message && (
-                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-                )}
-              </div>
+           {/* Message Field */}
+<div className="relative w-full">
+  <textarea
+    id="message"
+    name="message"
+    value={formData.message}
+    onChange={handleChange}
+    rows={5}
+    className={`peer w-full px-4 pt-6 pb-2 text-base text-white placeholder-white/30 
+      bg-purple-900/20 backdrop-blur-sm border rounded-md appearance-none 
+      focus:outline-none focus:ring-2 focus:ring-purple-400 
+      ${errors.message ? "border-red-500" : "border-purple-800"}`}
+    placeholder=""
+  />
+  <label
+    htmlFor="message"
+    className="absolute left-4 top-2 text-sm text-white/30 transition-all 
+      peer-placeholder-shown:top-5 peer-placeholder-shown:text-base peer-placeholder-shown:text-black/40 
+      peer-focus:top-2 peer-focus:text-sm peer-focus:text-purple-400"
+  >
+    Message
+  </label>
+
+  {errors.message && (
+    <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+  )}
+</div>
+
 
               {/* Submit Button */}
               <div className="text-center pt-2">
